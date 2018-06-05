@@ -19,7 +19,7 @@ Now it's time to test your SSH key. Run this command:
 ```
 ssh -T git@github.com
 ```
-If you now see a welcoming message, congratulations. Otherwise, make sure you added the key to your ssh agent:  
+If you now see a welcoming message, you've successfully setup your SSH key and you're done. Otherwise, make sure you added the key to your ssh agent:  
 First, run:  
 ```
 eval "$(ssh-agent -s)"
