@@ -24,11 +24,11 @@ First, run:
 ```
 eval "$(ssh-agent -s)"
 ```
-This starts the SSH agent in the background.  
+This starts the SSH agent in the background. Then, run the following command to add it:  
 ```
 ssh-add ~/.ssh/id_rsa
 ```  
-This command adds the key located in the SSH file generated in the previous steps. Again, replace this path to your own if you used a custom path. In either case, please make sure you have actually generated a SSH key there.
+Again, replace this path to your own if you used a custom path. In either case, please make sure you have actually generated a SSH key in the file you're pointing to.
 
 ### Git init
 To add this repository to your local git, simply run the following commands:
