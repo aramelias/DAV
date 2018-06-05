@@ -1,25 +1,8 @@
 # Data Analysis and Visualisation
 This is the github repo of Anne Boomsma, Aram Elias, Tim Müller en Mirka Schoute, otherwise known as Group 27. All the files of their project can be found on this repo.
 
-## Git init
-To add this repository to your local git, simply run the following commands:
-```
-cd /path/to/git/folder
-git init
-git remote add origin git@github.com:aramelias/DAV.git
-git pull origin master
-```
-A quick rundown of the commands:  
-`cd /path/to/git/folder`  
-This command moves the terminal to your desired folder. Replace `/path/to/git` with your own path.  
-`git init`  
-Initialises git in the folder.  
-`git remote add origin git@github.com:aramelias/DAV.git`  
-Tells git to add this repository to the list of repositories of chosen folder. This is what links git to your github.  
-`git pull origin master`  
-Download all files, testing your setup in the progress.
-
-## SSH-key generation
+## Git setup
+### SSH-key generation
 Please note that is mandatory to have an SSH-key using this setup. If you do not have this, please run the following command:  
 `ssh-keygen`  
 This command first asks your for the path of your SSH key. Leave empty to use the default (~/.ssh/id_rsa). Then, it asks for a password to lock the file. Please leave empty to ease your life considerably. Afterwards, two files are created: ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub (default location). Now run the following command:  
@@ -31,3 +14,15 @@ Now that you have generated a key, add this to github. Simply go to your setting
 Now it's time to test your SSH key. Run this command:  
 `ssh -T git@github.com`  
 If you now see a welcoming message, congratiolations. Otherwise, make sure you ran all steps correctly and try again.
+
+### Git init
+To add this repository to your local git, simply run the following commands:
+```
+cd /path/to/git/folder
+git clone git@github.com:aramelias/DAV.git
+```
+A quick rundown of the commands:  
+`cd /path/to/git/folder`  
+This command moves the terminal to your desired folder. Replace `/path/to/git` with your own path.  
+`git clone git@github.com:aramelias/DAV.git`  
+Clones the git repository into your designated folder. When done, your git should be setup properly. Do note that this will add the repo to a sub-folder in your current folder, named 'DAV'.
