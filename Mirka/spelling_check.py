@@ -1,29 +1,30 @@
 import pandas as pd
 
-data = pd.read_csv("WFPVAM_FoodPrices_05-12-2017.csv")
+data = pd.read_csv("../WFPVAM_FoodPrices_05-12-2017.csv")
 
 
 """
 Check if for all the rows if two words are supposed to be the same if they
 are they same
 """
-def get_misspelled(datas):
-    listwrong = []
-    for column in datas:
-        if datas[column].dtype == "object":
+def get_misspelled(database):
+    list_wrong = []
+    rows = len(database.index)
+    for column in database:
+        if database[column].dtype == "object":
             x = 0
-            while x < 783788:
-                placeholder = datas[column].loc[x]
+            while x < rows:
+                placeholder = database[column].loc[x]
                 if str(placeholder) == "nan":
                     placeholder = "Not-specified"
                 new = list(placeholder)
                 if x > 0:
                     y = check_same(new, last)
                     if y == 0:
-                        listwrong.append([x, column, "".join(new), "".join(last)])
+                        list_wrong.append([x, column, "".join(new), "".join(last)])
                 last = new
                 x += 1
-    return listwrong
+    return list_wrong
 
 
 """
@@ -50,4 +51,8 @@ def check_same(list1, list2):
             return 1
 
 
-print(get_misspelled(data))
+misspelled_cells = get_misspelled(data)
+
+with open("misspelled_cells.txt", "w" ) as f:
+    for datapoint in misspelled_cells:
+        f.write(str(datapoint)+"\n")
