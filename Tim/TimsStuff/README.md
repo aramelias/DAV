@@ -25,15 +25,15 @@ Then, you are ready to use it in your program. But first, you'll have to init it
 progress_bar = ProgressBar(width)
 ```
 The `width` argument is used to specify the number of characters the progress bar will be wide.  
-*Optional arguments:*
-`min_amount=0`: Defined as the starting value of the progressbar (the number at which it will be empty)
+*Optional arguments:*  
+`min_amount=0`: Defined as the starting value of the progressbar (the number at which it will be empty)  
 'max_amount=99': Defined as the ending value of the progressbar (the number at which it will be full)
 
 Once inited, you can use the progressbar by updating it's step value, which indicates how full it is. This is done by:
 ```
 progress_bar.update()
 ```
-This adds 1 to the inner step variable.
+This adds 1 to the inner step variable.  
 *Optional arguments:*  
 `amount=1`: Add the value given by amount instead to the inner step variable.
 ```
@@ -43,7 +43,7 @@ The `amount` argument specifies to what value the step counter should be set. Un
 ```
 progress_bar.update_only()
 ```
-Same as `progress_bar.update()`, except that the progress bar will not be printed yet. This allowes for multiple updates to occur within one refresh.
+Same as `progress_bar.update()`, except that the progress bar will not be printed yet. This allowes for multiple updates to occur within one refresh.  
 *Optional arguments:*  
 `amount=1`: Add the value given by amount instead to the inner step variable.
 ```
