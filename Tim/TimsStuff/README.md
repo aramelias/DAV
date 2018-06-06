@@ -54,3 +54,10 @@ Same as `progress_bar.set(amount)`, except that the progress bar will not be pri
 progress_bar.draw()
 ```
 Prints the progressbar on the terminal. Automatically called after running `progress_bar.update()` or `progress_bar.set(amount)`.
+```
+progress_bar.end()
+```
+End the progress bar by moving to the next line. Automatically called when the last progressbar is drawn and it is 100%.  
+*Optional arguments:*
+`clean=False`: If set to True, will first clear the line before moving the cursor.  
+`ending_character="\n"`: This is the character that is printed. By default, this is a newline so that the cursor moves on. It should be noted that it is called after the line is cleared, if that is specified.

@@ -57,7 +57,6 @@ if __name__ == '__main__':
             unique_items[cell_value] += 1
         # Update progress bar
         progress_bar.set(i)
-    progress_bar.end()
     print("Done.")
     # Time to represent the data
     print("<<< Result >>>")
