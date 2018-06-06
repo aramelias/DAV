@@ -62,5 +62,5 @@ End the progress bar by moving to the next line. Automatically called when the l
 `clean=False`: If set to `True`, will first clear the line before moving the cursor.  
 `ending_character="\n"`: This is the character that is printed. By default, this is a newline so that the cursor moves on. It should be noted that it is called after the line is cleared, if that is specified.
 
-##Contact
+## Contact
 If you encounter any bugs, feel free to let Tim know so he can fix them. But I'm assuming that's pretty self-explanatory.
