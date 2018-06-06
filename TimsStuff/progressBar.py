@@ -5,7 +5,7 @@
 
 class ProgressBar():
     def __init__(self, width, min_amount=0, max_amount=99):
-        self.width = width
+        self.width = width - 10
         self.step = min_amount
         self.max_amount = max_amount
 
