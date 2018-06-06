@@ -3,6 +3,7 @@
 #   or by quering the user itself.
 import pandas as pd
 import sys
+from TimsStuff.progressBar import ProgressBar
 
 def count_dict(dictionary):
     count = 0
@@ -43,10 +44,11 @@ if __name__ == '__main__':
 
     print("Collecting data from given column...")
     # First of all, collect total cell count
-    row_length = database[search_column].count()
+    row_length = len(database)
 
     # Now do the real scan
     unique_items = {}
+    progress_bar = ProgressBar(progressbar_width, max_amount=row_length)
     for i in range(row_length):
         cell_value = database[search_column][i]
         if cell_value not in unique_items:
@@ -54,13 +56,13 @@ if __name__ == '__main__':
         else:
             unique_items[cell_value] += 1
         # Update progress bar
-        percentage = i / row_length
-        print(" {:5.1f}% [".format(percentage * 100) + "=" * (int(progressbar_width * percentage)) + " " * ((progressbar_width - 1) - int(progressbar_width * percentage)) + "]", end="\r")
+        progress_bar.set(i)
+    progress_bar.end()
     print("Done.")
     # Time to represent the data
     print("<<< Result >>>")
     print("Total number of items: {}".format(count_dict(unique_items)))
-    print("")
+    print("Total number of elements: {}".format(row_length))
     print("Would you like to see the occurence of each item?")
     yn = input().lower()
     if yn in y_words:
