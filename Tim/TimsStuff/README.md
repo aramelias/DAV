@@ -27,7 +27,7 @@ progress_bar = ProgressBar(width)
 The `width` argument is used to specify the number of characters the progress bar will be wide.  
 *Optional arguments:*  
 `min_amount=0`: Defined as the starting value of the progressbar (the number at which it will be empty)  
-'max_amount=99': Defined as the ending value of the progressbar (the number at which it will be full)
+`max_amount=99`: Defined as the ending value of the progressbar (the number at which it will be full)
 
 Once inited, you can use the progressbar by updating it's step value, which indicates how full it is. This is done by:
 ```
