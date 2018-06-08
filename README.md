@@ -69,4 +69,4 @@ To switch a branch in order to push to it, you can use the following command:
 ```
 git checkout master
 ```
-Replace master by the branch you want checked out. Please note that, in order to keep everything in sync, you should keep pulling from the master branch regularly. Otherwise, merging will be a nightmare.
+Replace `master` by the branch you want checked out. Please note that, in order to keep everything in sync, you should keep pulling from the master branch regularly. Otherwise, merging will be a nightmare.
