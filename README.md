@@ -64,3 +64,9 @@ This computes which files should be updated because they're changed and which no
 git push origin master
 ```
 Finally, use this command to push all changed files to the server.
+### Switching branches
+To switch a branch in order to push to it, you can use the following command:
+```
+git checkout master
+```
+Replace master by the branch you want checked out. Please note that, in order to keep everything in sync, you should keep pulling from the master branch regularly. Otherwise, merging will be a nightmare.
