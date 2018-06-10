@@ -16,7 +16,7 @@ class ProgressBar():
         bar = " {:5.1f}% ".format(percentage * 100)
         bar += "["
         bar += "=" * (int(self.width * percentage))
-        bar += " " * ((self.width - 1) - int(self.width * percentage))
+        bar += " " * ((self.width) - int(self.width * percentage))
         bar += "]"
         print(bar,end="\r")
         if percentage >= 1:
