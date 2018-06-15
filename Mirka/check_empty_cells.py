@@ -1,12 +1,11 @@
 import pandas as pd
 
-data = pd.read_csv("../WFPVAM_FoodPrices_05-12-2017.csv")
+data = pd.read_csv("../foodprices2 unified.csv")
 
 def get_empty(database):
     list_empty = []
     rows = len(database.index)
     for column in database:
-        print(column)
         x = 0
         while x < rows:
             placeholder = database[column].loc[x]
