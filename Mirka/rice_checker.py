@@ -9,12 +9,23 @@ all_rice_data = data[rice_data]
 
 rice_grouped_country = all_rice_data["product_name"].groupby(all_rice_data["country_name"])
 
-for country, x in rice_grouped_country:
-    print(country)
-    print(len(rice_grouped_country.unique()[country]))
-
 grouped_country_and_product = all_rice_data.groupby(["country_name", "product_name"])
 means = grouped_country_and_product["standardized_prices"].mean()
+different_sorts = 0
+x = 0
+prices_all_countries = []
+
+for country, empty in rice_grouped_country:
+    price_country = []
+    for rice in rice_grouped_country.unique()[country]:
+        price_country.append([means[x], rice])
+        x += 1
+    prices_all_countries.append([country, price_country])
+
+
+print(prices_all_countries)
+
+
 
 
 
