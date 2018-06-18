@@ -1,6 +1,8 @@
-from bokeh.plotting import figure
 from bokeh.io import output_file, show
+from bokeh.plotting import figure, show, output_file
+from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label
 import pandas as pd
+
 
 data_food = pd.read_csv("../../foodprices2 unified better.csv")
 data_BMI = pd.read_csv("../BMI-Data-Less.csv")
@@ -36,15 +38,7 @@ for year in years:
     year_rice_data_food = year_rice_data_food.groupby("country_name")
     year_rice_data_food = year_rice_data_food["standardized_prices"].mean()
 
-    print(year_rice_data_food)
-    print(year_data_BMI)
-
-    #scatterplotter_BMI_Price(year_rice_data_food, year_BMI_data_food, output)
-
-
-
-def scatterplotter_BMI_Price(X_axis, Y_axis, output, Sizes=None, colors=None):
-    ouptu_file(output)
+    output_file("".join([output, ".html"]))
 
     f = figure(plot_width = 1000, plot_height=650)
 
@@ -52,12 +46,11 @@ def scatterplotter_BMI_Price(X_axis, Y_axis, output, Sizes=None, colors=None):
     f.title.text_font_size="25px"
     f.title.align="center"
 
-    f.xaxis.axis_label="Petal Length"
-    f.yaxis.axis_label="Petal Width"
+    f.yaxis[0].axis_label="BMI"
+    f.xaxis[0].axis_label="Prices per KG rice"
 
-    f.circle(x=X_axis, y=Y_axis, size=sizes,
-         fill_alpha=0.2, color=colors)
-
+    f.circle(x=year_rice_data_food, y = year_data_BMI["".join(BMI_search)], size=4,tags = year_rice_data_food.index.tolist())
+    show(f)
 
 
 
