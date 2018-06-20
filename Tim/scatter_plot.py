@@ -212,6 +212,7 @@ def do_graph_animation (graph_product, title, path, progress_bar):
     for region in graph_product:
         if region not in country_data:
             country_data[region] = {}
+        lowest_region_year = float("inf")
         for timestamp in graph_product[region]:
             x_list, y_list = graph_product[region][timestamp]
             # Create the dataset
@@ -223,6 +224,8 @@ def do_graph_animation (graph_product, title, path, progress_bar):
                 # Take care we get some limits
                 if timestamp < lowest_year:
                     lowest_year = timestamp
+                if timestamp < lowest_region_year:
+                    lowest_region_year = timestamp
                 if timestamp > highest_year:
                     highest_year = timestamp
                 if country_price < lowest_price:
@@ -245,13 +248,12 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
 
         # Now create a nice source of the data
-        print(country_data[region])
-        data_source = bokeh.models.ColumnDataSource(data=country_data[region][lowest_year])
+        data_source = bokeh.models.ColumnDataSource(data=country_data[region][lowest_region_year])
         sources.append([data_source, region])
 
         # Now plot it
         region_color = REGION_NAME_2_COLOR[region]
-        elem = f.scatter("x", "y", source=data_source, color=region_color, muted_color=region_color, muted_alpha=0.2, size=10)
+        elem = f.scatter("x", "y", source=data_source, color=region_color, muted_color=region_color, muted_alpha=0.1, size=10)
 
         # Add elem to the legends
         legend_list.append((region, [elem]))
@@ -278,8 +280,6 @@ def do_graph_animation (graph_product, title, path, progress_bar):
         bokeh.layouts.widgetbox(slider)
     )
     plt.save(layout)
-
-    sys.exit()
 
 # Hiarchy:
 #   product
