@@ -28,8 +28,6 @@
 #     legend problem was found...                   #
 #####################################################
 
-# TODO: Plot as PNG, create GIF
-
 import argparse
 import pandas as pd
 import sys
