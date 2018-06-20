@@ -263,8 +263,8 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
     legend = bokeh.models.Legend(items=legend_list, location=(0,0), click_policy="mute")
 
-    f.x_range = bkm.DataRange1d(start=lowest_BMI, end=highest_BMI)
-    f.y_range = bkm.DataRange1d(start=lowest_price, end=highest_price)
+    f.x_range = bkm.DataRange1d(start=lowest_price, end=highest_price)
+    f.y_range = bkm.DataRange1d(start=lowest_BMI, end=highest_BMI)
 
     # Make the slider
     callback = bokeh.models.CustomJS(args=dict(sources=sources, all_data=country_data), code=callback_code)
