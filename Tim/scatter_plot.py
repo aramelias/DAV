@@ -245,6 +245,7 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
 
         # Now create a nice source of the data
+        print(country_data[region])
         data_source = bokeh.models.ColumnDataSource(data=country_data[region][lowest_year])
         sources.append([data_source, region])
 
@@ -277,6 +278,8 @@ def do_graph_animation (graph_product, title, path, progress_bar):
         bokeh.layouts.widgetbox(slider)
     )
     plt.save(layout)
+
+    sys.exit()
 
 # Hiarchy:
 #   product
@@ -375,8 +378,13 @@ def main (input_path, input_path_bmi, output_path):
     print("##     v2.0     ##")
     print("##################\n")
 
+    print("USING PATHS:")
+    print("  - Prices DB:     {}".format(input_path))
+    print("  - BMI DB:        {}".format(input_path_bmi))
+    print("  - Output folder: {}".format(output_path))
+
     # Read DB
-    print("Reading database...")
+    print("\nReading database...")
     db_price = pd.read_csv(input_path)
     print("Done, reading BMI-database...")
     db_bmi = pd.read_csv(input_path_bmi)
