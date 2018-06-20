@@ -1,5 +1,12 @@
 awesome,pawesome,teddy,bear
 test,test,test,test
+<<<<<<< HEAD
+test,test,tets,test
+tet,test,test,test
+apple,apple,appel,apple
+apple,appke,apple,apple
+=======
 test,test,test,test
 tet,test,test,test
 apple,apple,appel,apple
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934

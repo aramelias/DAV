@@ -1,0 +1,15 @@
+Tim's DOCU thing.
+
+Week 1:
+ - Kennis gemaakt met Pandas
+ - 'countDifferent.py' gemaakt, programma om te bepalen hoeveel verschillende landen of iets dergelijks in de DB zitten
+ - BMI-Data-Less.csv gepreprocessed
+ - Gewerkt aan een spellCheck.py, maar Mirka had dit al gedaan dus niet nodig
+ - Gewerkt aan progressBar.py om output bij de programmas te verduidelijken.
+ - Begonnen met het 'unifiyen' (aka de eenheden omzetten in de gestandariseerde versie van zichzelf) van de hoofddatabase
+
+Week 2:
+ - Afgemaakt van unifyen
+ - Gewerkt aan graphs.py die grafieken kan maken van de data
+ - Gevonden grafieken geanalyseerd
+ - Programma gemaakt om te analyseren
