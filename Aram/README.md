@@ -9,3 +9,6 @@ The part of EDA designated to me is the univariate graphical and non-graphical a
 A box plot has been made of the mean of all product prices per country, meaning that the list of figures the plot is based on is the list of average prices -- one per country.
 Because the box plot created using pyplot is extremely condensed to also fit the outliers into the same image, another box plot has been made where only the values under 6.0 are taken into account.
 ### June 20
+The material related to k-means and linear regression was studied.
+### June 21
+An attempt at writing a linear-regression algorithm was made, related to the food price and BMI of each country.
