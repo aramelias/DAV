@@ -1,8 +1,34 @@
 from bokeh.io import output_file, show, export_png
+from bokeh.layouts import row, widgetbox
 from bokeh.plotting import figure, show, output_file
-from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
+from bokeh.models import CustomJS, Slider, ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
 import pandas as pd
 
+
+
+callback_code = """
+    var slider_value = cb_obj.value;
+    for (var i = 0; i < sources.length; i++) {
+        var source = sources[i][0];
+        var source_data = source.data;
+        var data = sources[i][1];
+        var changed = false;
+        for (year in years) {
+            if (year == slider_value) {
+                source_data["x"] = data[year]["x"];
+                source_data["y"] = data[year]["y"];
+                changed = true;
+                break;
+            }
+        }
+        if (!changed) {
+            source_data["x"] = 0;
+            source_data["y"] = 0;
+        }
+        // Update
+        source.change.emit();
+    }
+"""
 
 COUNTRY_2_ID = {
     "Afghanistan":0,
@@ -109,78 +135,122 @@ REGION_ID_2_COLOR = {
     12: "aqua"
 }
 
-
-data_food = pd.read_csv("../../foodprices2 unified better.csv")
-data_BMI = pd.read_csv("../BMI-Data-Less.csv")
-
-rice_data_food = data_food["product_name"].str.contains("Rice")
-
-
-all_rice_data_food = data_food[rice_data_food]
+def reading_databases():
+    print("reading databases")
+    data_food = pd.read_csv("../../foodprices2 unified better.csv")
+    data_BMI = pd.read_csv("../BMI-Data-Less.csv")
+    return data_food, data_BMI
 
 
-years = list(set(all_rice_data_food["year"].unique()))
-years.pop()
+def convert_to_source(data_food, data_BMI):
+    # get all data about rice
+    rice_data_food = data_food["product_name"].str.contains("Rice")
+    all_rice_data_food = data_food[rice_data_food]
 
 
-for year in years:
-    year_rice_data_food = all_rice_data_food[all_rice_data_food["year"] == year]
+    years = list(set(all_rice_data_food["year"].unique()))
+    years.pop()
 
-    output_file_list = ["BMI_vs_Price_", str(year)]
-    output = "".join(output_file_list)
-
-    BMI_search = [str(year), " – Both sexes"]
-    year_data_BMI = data_BMI[["Country", "".join(BMI_search)]]
-
-    country_list_BMI = year_data_BMI["Country"].unique().tolist()
-    country_list_food = year_rice_data_food["country_name"].unique().tolist()
-    for country_BMI in country_list_BMI:
-        if country_BMI not in country_list_food:
-            year_data_BMI = year_data_BMI[year_data_BMI["Country"] != country_BMI]
-    for country_food in country_list_food:
-        if country_food not in country_list_BMI:
-            year_rice_data_food = year_rice_data_food[year_rice_data_food["country_name"] != country_food]
-
-    year_rice_data_food = year_rice_data_food.groupby("country_name")
-    year_rice_data_food = year_rice_data_food["standardized_prices"].mean()
+    lists = []
 
 
-    regions = [COUNTRY_2_REGION[y] for y in year_rice_data_food.index.tolist()]
-    color_list = [REGION_ID_2_COLOR[x] for x in regions]
+    for year in years:
+        print("Creating source for ", year)
+        year_rice_data_food = all_rice_data_food[all_rice_data_food["year"] == year]
 
-    region_names = [REGION_ID_2_NAME[z] for z in regions]
+        BMI_search = [str(year), " – Both sexes"]
+        year_data_BMI = data_BMI[["Country", "".join(BMI_search)]]
+
+        country_list_BMI = year_data_BMI["Country"].unique().tolist()
+        country_list_food = year_rice_data_food["country_name"].unique().tolist()
+        for country_BMI in country_list_BMI:
+            if country_BMI not in country_list_food:
+                year_data_BMI = year_data_BMI[year_data_BMI["Country"] != country_BMI]
+        for country_food in country_list_food:
+            if country_food not in country_list_BMI:
+                year_rice_data_food = year_rice_data_food[year_rice_data_food["country_name"] != country_food]
+
+        year_rice_data_food = year_rice_data_food.groupby("country_name")
+        year_rice_data_food = year_rice_data_food["standardized_prices"].mean()
 
 
-    output_file("".join([output, ".html"]))
+        regions = [COUNTRY_2_REGION[y] for y in year_rice_data_food.index.tolist()]
+        color_list = [REGION_ID_2_COLOR[x] for x in regions]
 
-    rice_data_list = []
-    for element in year_rice_data_food:
-        rice_data_list.append(element)
-
-    BMI_data_list = []
-    for element in year_data_BMI["".join(BMI_search)]:
-        BMI_data_list.append(element)
-
-    new_country_list = year_data_BMI["Country"].unique().tolist()
+        region_names = [REGION_ID_2_NAME[z] for z in regions]
 
 
-    source = ColumnDataSource(data=dict(x=rice_data_list, y=BMI_data_list, countries=new_country_list, color=color_list, region=region_names))
+        rice_data_list = []
+        for element in year_rice_data_food:
+            rice_data_list.append(element)
 
-    hover = HoverTool(tooltips=[("Country", "@countries"), ("Region", "@region")])
+        BMI_data_list = []
+        for element in year_data_BMI["".join(BMI_search)]:
+            BMI_data_list.append(element)
+
+        new_country_list = year_data_BMI["Country"].unique().tolist()
+        v = 0
+
+        while v < len(rice_data_list):
+            if str(rice_data_list[v]) == "nan":
+                print(v)
+                rice_data_list.pop(v)
+                BMI_data_list.pop(v)
+                new_country_list.pop(v)
+                v -= 2
+            v += 1
+
+        lists.append([year, {"x":rice_data_list, "y":BMI_data_list, "countries":new_country_list, "regions":region_names, "colors":color_list}])
+
+    return lists
+
+def scroll_plotter(first_source, sources):
+    source = ColumnDataSource(data=first_source)
+
+    hover = HoverTool(tooltips=[("Country", "@countries"), ("Region", "@regions")])
     tools = [hover, WheelZoomTool(), PanTool(), BoxZoomTool(), ResetTool(), SaveTool()]
 
     f = figure(tools=tools, plot_width = 1000, plot_height=650)
+    f.scatter(x="x", y="y", size = 8, color="colors", source=source)
 
+    callback = CustomJS(args=dict(source=source, source_list=sources), code= """
+    var slider_value = cb_obj.value;
+    for (var i = 0; i < source_list.length; i++) {
+        var source_data = source.data;
+        if (i + 1994 == slider_value) {
+            var new_source = source_list[i][1]
+            source_data["x"] = new_source["x"]
+            source_data["y"] = new_source["y"]
+            source_data["colors"] = new_source["colors"]
+            source_data["countries"] = new_source["countries"]
+            source_data["regions"] = new_source["regions"]
+            break;
+        }
 
+        // Update
+        source.change.emit();
+    }
+    """)
 
-    f.title.text = output
-    f.title.text_font_size="25px"
-    f.title.align="center"
+    slider = Slider(start = sources[0][0], end = sources.pop()[0], value = 1, step =1, title="Year")
+    slider.js_on_change('value', callback)
 
     f.yaxis[0].axis_label="BMI"
     f.xaxis[0].axis_label="Prices per KG rice"
 
     f.x_range=DataRange1d(start=0, end=3.5)
+    f.y_range=DataRange1d(start=20, end=30)
 
-    f.scatter(x="x", y="y", size = 8, color="color", source=source)
-    show(f)
+    layout = row(
+        f,
+        widgetbox(slider),
+    )
+
+    output_file("Rice_vs_BMI_slider.html")
+
+    show(layout)
+
+if __name__ == "__main__":
+    database_x, database_y = reading_databases()
+    sources_list = convert_to_source(database_x, database_y)
+    scroll_plotter(sources_list[0][1], sources_list)
