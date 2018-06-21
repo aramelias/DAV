@@ -4,9 +4,23 @@ import pandas as pd
 import sys
 import os
 import threading
+<<<<<<< HEAD
+import nltk
+import time
 
 from TimsStuff.progressBar import ProgressBar
 
+
+# TODO: Change entire process to first dividing different words into many VS few
+#       Then, loop through the few to find matching parent. Expected to be MUCH
+#       faster.
+# NOTE: Pretty much rubbish in it's current state (matches Rwanda with Galmi)
+
+=======
+
+from TimsStuff.progressBar import ProgressBar
+
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
 class Analyser(threading.Thread):
     def __init__(self, columns):
         threading.Thread.__init__(self)
@@ -106,6 +120,10 @@ class SpellChecker (threading.Thread):
         if not self.running:
             self.running = True
             self.spelling_errors = []
+<<<<<<< HEAD
+            self.groups = []
+=======
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
             self.counter = 0
             threading.Thread.start(self)
             print("{}: Started successfully (checking {} words)".format(self.name, len(self.words)))
@@ -115,6 +133,42 @@ class SpellChecker (threading.Thread):
     # The work itself
     def run (self):
         for (word1, counter1) in self.words:
+<<<<<<< HEAD
+            # Quickly check if in groups
+            already_done = False
+            for group in self.groups:
+                if (word1, counter1) in group:
+                    # We already done it
+                    already_done = True
+                    self.counter += len(self.diff_words)
+                    break
+            if not already_done:
+                # Construct paring list
+                master_word = word1
+                master_counter = counter1
+                group = [(word1, counter1)]
+                for (word2, counter2) in self.diff_words:
+                    # Compare
+                    diff = difference(word1, word2)
+                    # If not equal but differ less than four characters:
+                    if diff > 0 and diff < 4:
+                        if counter2 > master_counter:
+                            master_word = word2
+                            master_counter = counter2
+                        group.append((word2, counter2))
+
+                    self.counter += 1
+                    if not self.running:
+                        break
+                self.groups.append(group)
+                # Now we have a group, remove master
+                group.remove((master_word, master_counter))
+                # Make spelling errors
+                for (word, counter) in group:
+                    if (master_word, word) not in self.spelling_errors:
+                        self.spelling_errors.append((master_word, word))
+
+=======
             for (word2, counter2) in self.diff_words:
                 # Compare
                 diff = difference(word1, word2)
@@ -130,6 +184,7 @@ class SpellChecker (threading.Thread):
                 self.counter += 1
                 if not self.running:
                     break
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
             if not self.running:
                 break
         self.running = False
@@ -163,7 +218,14 @@ def is_float (to_test):
 
 # Get the amount of characters different between the two
 def difference (word1, word2):
+<<<<<<< HEAD
+    return nltk.edit_distance(word1, word2)
+
+    # Redundant
+
+=======
     return difference_ordered(word1, word2)
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
     # Loop through each letter of word1 to see if it occurs in word2
     i = 0
     j = 0
@@ -179,8 +241,11 @@ def difference (word1, word2):
             i += 1
     return len(word1 + word2)
 
+<<<<<<< HEAD
+=======
 def difference_ordered (word1, word2):
     for i
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
 
 # Return a multid
 def spread (list):
@@ -210,7 +275,11 @@ if __name__ == "__main__":
 
     print("\n########################")
     print("##### SPELLCHECKER #####")
+<<<<<<< HEAD
+    print("#####     v4.0     #####")
+=======
     print("#####     v3.0     #####")
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
     print("########################\n")
 
     # Check database validity
@@ -259,13 +328,26 @@ if __name__ == "__main__":
     for (thread, _) in threads:
         thread.start()
 
+<<<<<<< HEAD
+    time_start = time.time()
+
     # Now keep up with the progress bars
     running_threads = len(threads)
+    thread_times = {}
+=======
+    # Now keep up with the progress bars
+    running_threads = len(threads)
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
     result = {}
     while running_threads > 0:
         print("")
         running_threads = 0
+<<<<<<< HEAD
+        for i in range(len(threads)):
+            thread, progress_bar = threads[i]
+=======
         for (thread, progress_bar) in threads:
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
             # Update the running status
             if not thread.isDone():
                 running_threads += 1
@@ -276,11 +358,28 @@ if __name__ == "__main__":
             else:
                 print("{} done    ".format(thread.name),end="")
                 progress_bar.set(thread.getStatus())
+<<<<<<< HEAD
+                if thread.name not in thread_times:
+                    thread_times[thread.name] = time.time() - time_start
+=======
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
         # Reset the cursor to the beginning
         for i in range(len(threads)):
             print("\033[F\033[F")
         print("\033[F\033[F")
+<<<<<<< HEAD
+    total_duration = time.time() - time_start
     print("\n\n\n\n\n\nDone")
+    print("  - Total duration:        {0:.2f}s".format(total_duration))
+    total_thread_duration = 0
+    for thread in thread_times:
+        total_thread_duration += thread_times[thread]
+    print("  - Ideal thread duration: {0:.2f}s".format(total_thread_duration / len(thread_times)))
+    for thread in thread_times:
+        print("    - {} duration: {}s".format(thread, round(thread_times[thread], 2)))
+=======
+    print("\n\n\n\n\n\nDone")
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
 
     print("Gathering results...")
     # Cross-reference the result to eliminate all doubles
@@ -318,13 +417,26 @@ if __name__ == "__main__":
     for (thread, _) in threads:
         thread.start()
 
+<<<<<<< HEAD
+    time_start = time.time()
+
     # Now keep up with the progress bars
     running_threads = len(threads)
+    thread_times = {}
+=======
+    # Now keep up with the progress bars
+    running_threads = len(threads)
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
     result = {}
     while running_threads > 0:
         print("")
         running_threads = 0
+<<<<<<< HEAD
+        for i in range(len(threads)):
+            thread, progress_bar = threads[i]
+=======
         for (thread, progress_bar) in threads:
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
             # Update the running status
             if not thread.isDone():
                 running_threads += 1
@@ -335,11 +447,28 @@ if __name__ == "__main__":
             else:
                 print("{} done    ".format(thread.name),end="")
                 progress_bar.set(thread.getStatus())
+<<<<<<< HEAD
+                if thread.name not in thread_times:
+                    thread_times[thread.name] = time.time() - time_start
+=======
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
         # Reset the cursor to the beginning
         for i in range(len(threads)):
             print("\033[F\033[F")
         print("\033[F\033[F")
+<<<<<<< HEAD
+    total_duration = time.time() - time_start
     print("\n\n\n\n\n\nDone")
+    print("  - Total duration:        {0:.2f}s".format(total_duration))
+    total_thread_duration = 0
+    for thread in thread_times:
+        total_thread_duration += thread_times[thread]
+    print("  - Ideal thread duration: {0:.2f}s".format(total_thread_duration / len(thread_times)))
+    for thread in thread_times:
+        print("    - {} duration: {}s".format(thread, round(thread_times[thread], 2)))
+=======
+    print("\n\n\n\n\n\nDone")
+>>>>>>> 27d75ea2d5f004c2b5705ba0b48696758e842934
 
     print("Gathering spelling errors...")
     # Cross-reference the result to eliminate all doubles
