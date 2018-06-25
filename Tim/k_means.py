@@ -30,7 +30,23 @@
 ##     (using t-SNE to reduce dimensions, result         ##
 ##     pending)                                          ##
 ###########################################################
-
+## v0.7 (alpha):                                         ##
+##  - (Temporarily) Removed t-SNE, as this takes endless ##
+##    amount of time                                     ##
+###########################################################
+## v0.8 (alpha):                                         ##
+##  o Changed overview graph presentation to a list of   ##
+##    all graphs (result pending)                        ##
+###########################################################
+## v0.9 (alpha):                                         ##
+##  o Swapped back to t-SNE dimensionality reduction,    ##
+##    bc of better understanding and possible solutions  ##
+###########################################################
+## v1.0:                                                 ##
+##  o Switches dev status to 'released'                  ##
+##  o Small improvements, such as graph layout and final ##
+##    bug fixes                                          ##
+###########################################################
 
 import argparse
 import pandas as pd
@@ -96,55 +112,93 @@ LEGAL_COLUMNS = [
     "standardized_prices"
 ]
 
-def return_graph (title, graph_dataset):
+def is_int (thing):
+    try:
+        int(thing)
+        return True
+    except ValueError:
+        return False
+
+def file_exists (filename):
+    try:
+        f = open(filename, "r")
+        f.close()
+        return True
+    except FileNotFoundError:
+        return False
+
+def return_graph (title, graph_dataset, columns="price,bmi"):
     # First, let's convert colors
+    print("  - Converting colors...",end="")
     colors = list(graph_dataset.colors)
     for i, color in enumerate(graph_dataset.colors):
         r,g,b = COLOR_ID_TO_COLOR_RGB[color]
         colors[i] = bokeh.colors.RGB(r, g, b)
     graph_dataset.colors = colors
 
+    columns = columns.split(",")
+
+    print("\r\033[K  - Creating figure...",end="")
+
     # Create hover tool
     hover = bkm.HoverTool(tooltips=[("Country", "@names"), ("Region", "@regions")])
 
     # Create figure
-    f = plt.figure(title=title, x_axis_label = XLABEL, y_axis_label = YLABEL, tools=[hover, bkm.WheelZoomTool(), bkm.BoxZoomTool(), bkm.PanTool(), bkm.SaveTool(), bkm.ResetTool()], width=900)
+    f = plt.figure(title=title, x_axis_label = columns[0], y_axis_label = columns[1], tools=[hover, bkm.WheelZoomTool(), bkm.BoxZoomTool(), bkm.PanTool(), bkm.SaveTool(), bkm.ResetTool()], width=900)
 
     # Plot
 
-    data = {"price":graph_dataset.price, "BMI":graph_dataset.bmi, "names":graph_dataset.names, "regions":graph_dataset.regions, "colors":graph_dataset.colors}
-    source = bkm.ColumnDataSource(data=data)
-    f.scatter("price", "BMI", source=source, color="colors", muted_color="colors", muted_alpha=0.1, size=10)
+    # First, make the graph_dataset unique
+    x_list = graph_dataset[columns[0]]
+    y_list = graph_dataset[columns[1]]
+    names = graph_dataset["names"]
+    regions = graph_dataset["regions"]
+    colors = graph_dataset["colors"]
+    #for i in range(len(graph_dataset[columns[0]])):
+    #    elem1 = graph_dataset[columns[0]][i]
+    #    elem2 = graph_dataset[columns[1]][i]
+    #    if elem1 not in x_list and elem2 not in y_list:
+    #        x_list.append(elem1)
+    #        y_list.append(elem2)
+    #        names.append(graph_dataset["names"][i])
+    #        regions.append(graph_dataset["regions"][i])
+    #        colors.append(graph_dataset["colors"][i])
 
-    f.x_range = bkm.DataRange1d(start=-1, end=3)
-    f.y_range = bkm.DataRange1d(start=20, end=30)
+    print("\r\033[K  - Plotting...",end="")
+    data = {columns[0]:x_list, columns[1]:y_list, "names":names, "regions":regions, "colors":colors}
+    source = bkm.ColumnDataSource(data=data)
+    f.scatter(columns[0], columns[1], source=source, color="colors", muted_color="colors", muted_alpha=0.1, size=10)
+
+    #f.x_range = bkm.DataRange1d(start=-1, end=3)
+    #f.y_range = bkm.DataRange1d(start=20, end=30)
 
     # Add legend & save
+    print("\r\033[K  - Done")
     return f
 
-def display_graphs (graphs=[], *graph_datas):
+def display_graphs (*graph_datas, graphs=[], columns="price,bmi", path="pricevsbmi.html"):
     # Assemble all the graphs
     fs = []
-    if graphs == []:
+    if len(graphs) < 1:
         for title, graph_data in graph_datas:
-            fs.append(return_graph(title, graph_data))
+            fs.append(return_graph(title, graph_data, columns=columns))
     else:
         for title, graph_data in graphs:
-            fs.append(return_graph(title, graph_data))
+            fs.append(return_graph(title, graph_data, columns=columns))
 
     # Construct a layout
     layout = bkm.layouts.Column(children=fs)
 
     # Show it
-    plt.output_file("test.html", mode="inline")
+    plt.output_file(path, mode="inline")
     plt.show(layout)
 
 # Main
-def main (input_path, input_path_bmi):
+def main (input_path, input_path_bmi, permutation_size, with_colors):
     # Welcoming message
     print("\n#################")
     print("##   K-MEANS   ##")
-    print("##    v 0.6    ##")
+    print("##    v 0.9    ##")
     print("#################\n")
 
     # Show the paths
@@ -196,7 +250,8 @@ def main (input_path, input_path_bmi):
     print("Done")
 
 
-    print("Performing K-means...")
+    print("Creating K-Means graph...")
+    print("  - Doing K-Means...")
 
     # Get the dataframe we use for the simple match
     x = pd.DataFrame()
@@ -206,7 +261,7 @@ def main (input_path, input_path_bmi):
     # Do K-Means
     model = KMeans(n_clusters=len(scatter_plot.REGION_ID_2_NAME))
     model.fit(x)
-    print("Creating K-Means graph...")
+    print("  - Creating K-Means graph...")
     x["names"] = complete["names"]
     x["regions"] = complete["regions"]
     x["colors"] = model.labels_
@@ -216,63 +271,139 @@ def main (input_path, input_path_bmi):
     graphs = [("Price of Rice VS BMI per country", complete), ("Result of K-Means of price of Rice VS BMI per country", x)]
 
     print("Creating graph of entire database...")
+    print("  - Collecting data...")
 
-    # Do a general graph
-    data = []
-    for row in db_price.itertuples():
-        new_row = {}
-        new_row["country_id"] = row.country_id
-        new_row["region_id"] = row.region_id
-        new_row["city_id"] = row.city_id
-        new_row["product_id"] = row.product_id
-        new_row["cur_id"] = row.cur_id
-        new_row["sale_id"] = row.sale_id
-        new_row["month"] = row.month
-        new_row["year"] = row.year
-        new_row["standardized_units_ids"] = row.standardized_units_ids
-        new_row["standardized_prices"] = row.standardized_prices
-        new_row["countries"] = row.country_name
-        new_row["regions"] = scatter_plot.REGION_ID_2_NAME[scatter_plot.COUNTRY_2_REGION[row.country_name]]
-        data.append(new_row)
-    all_data = pd.DataFrame(data)
+    # Do some preliminairy analysis
+    all_data = pd.DataFrame()
+    column_names = []
+    counter = 0
+    for column in db_price:
+        if column in LEGAL_COLUMNS:
+            all_data[column] = db_price[column]
+            column_names.append(column)
+            for cell in all_data[column]:
+                # Count objects
+                counter += 1
+    # Add countries and regions
+    all_data["names"] = db_price["country_name"]
+    regions = []
+    for country in all_data["names"]:
+        regions.append(scatter_plot.COUNTRY_2_REGION[country])
+    all_data["regions"] = regions
 
-    x = pd.DataFrame()
-    for column in all_data:
-        if column != "countries" and column != "regions":
-            x[column] = all_data[column]
+    # Do a random permutation
+    rndperm = np.random.permutation(all_data.shape[0])
+    x = all_data.loc[rndperm[:permutation_size],:].copy()
+    names = x["names"].copy()
+    regions = x["regions"].copy()
+    x = x.drop(["names", "regions"], axis=1)
 
-    print("  - Performing K-Means...")
-    model = KMeans(n_clusters = 8)
+    # Do K-Means and shit
+    print("    (Total number of elements: {})".format(counter))
+    print("  - Doing K-Means...")
+    path_clusters = "clusters.txt"
+    if file_exists(path_clusters):
+        print("    - Loading perfect cluster amount...")
+        with open(path_clusters, "r") as f:
+            n_clusters = int(f.read())
+        print("    - Done (using {} clusters)".format(n_clusters))
+    else:
+        progress_bar = ProgressBar(min_amount=1, max_amount=20)
+        inertias = []
+        for i in range(1,20):
+            progress_bar.update_preceding_text("    - Testing K-Means on n_clusters={}...".format(i))
+            model = KMeans(n_clusters = i)
+            model.fit(x)
+            inertias.append(model.inertia_)
+            progress_bar.update()
+
+        # Show the lbow graph
+        figure = plt.figure(title="Elbow graph", x_axis_label = "N of clusters", y_axis_label = "Inertia")
+        figure.line(range(1, 20), inertias, color="red")
+        plt.show(figure)
+
+        print("      Select the good amount of clusters:\n      ",end="")
+        n_clusters = input()
+        while not is_int(n_clusters) or int(n_clusters) < 1 or int(n_clusters) > 20:
+            print("      Enter a number ranging 1-20!\n      ",end="")
+            n_clusters = input()
+        n_clusters = int(n_clusters)
+        print("    - Saving...")
+        with open(path_clusters, "w") as f:
+            f.write(str(n_clusters))
+
+    print("  - Actually performing K-Means...")
+    model = KMeans(n_clusters = n_clusters)
     model.fit(x)
 
+    path_kmeans = "kmeans_result.txt"
+    path_tsne = "tsne_result.txt"
+    with open(path_kmeans, "w") as f:
+        f.write(str(model.labels_))
+
+    # Do colors, if desired
+    if with_colors:
+        x["colors"] = model.labels_
+
     print("  - Using TSNE to reduce dimensions...")
-    x_embedded = TSNE().fit_transform(x)
-    print(x_embedded)
+    start = time.time()
+    x_embedded = TSNE(verbose=2).fit_transform(x.values)
+    time_taken = time.time() - start
+    with open(path_tsne, "w") as f:
+        f.write(str(x_embedded))
+
+    print("\n  - Done (took {}m{}s, result saved to {}".format(time_taken // 60, time_taken % 60, path_tsne))
+
+    y = pd.DataFrame()
+    y["t-SNE X"] = x_embedded[:,0]
+    y["t-SNE Y"] = x_embedded[:,1]
+    y["regions"] = regions
+    y["names"] = names
+    y["colors"] = model.labels_
+
     print("Done")
+
+    path_html = "t_sne_"
+    i = 0
+    while file_exists(path_html + str(i) + ".html"):
+        i += 1
+    path_html += str(i) + ".html"
 
     # Show the graph
     print("Showing graphs...")
-    display_graphs(children=graphs + [("General overview"), x])
-    print("Done")
+    display_graphs(graphs=graphs)
+    print("Showing overview graph...")
+    display_graphs(("Overview K-Means", y), columns="t-SNE X,t-SNE Y", path=path_html)
+    print("Done.")
 
 # Entry point
 if __name__ == "__main__":
+    np.set_printoptions(threshold=np.inf)
+
     # Do some arg parsing
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input_path", help="The path to the to be checked database")
     parser.add_argument("-ib", "--input_path_bmi", help="The path to the BMI database")
+    parser.add_argument("-s", "--sample_size", type=int, help="The number of elements that will be taken from the database.")
+    parser.add_argument("-c", "--colours", action="store_true", help="If given, the program will include the labels given by K-Means while reducing dimensions")
     args = parser.parse_args()
 
     input_path = "/Users/Tim/UvA/DAV/Ignored/foodprices2 unified better.csv"
     input_path_bmi = "/Users/Tim/UvA/DAV/BMI-Data-Less.csv"
+    permutation_size = 10000
+    with_colours = False
     if args.input_path:
         input_path = args.input_path
     if args.input_path_bmi:
         input_path_bmi = args.input_path_bmi
+    if args.sample_size:
+        permutation_size = args.sample_size
+    if args.colours:
+        with_colours = True
 
 
     try:
-        main (input_path, input_path_bmi)
+        main (input_path, input_path_bmi, permutation_size, with_colours)
     except KeyboardInterrupt:
         print("\nInterrupted by user")
         sys.exit()
