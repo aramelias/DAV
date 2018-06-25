@@ -503,8 +503,8 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--sort_by", help="Changes the way the specific graphs are sorted (default: 'countries', but can also be 'products')")
     args = parser.parse_args()
 
-    input_path = "/home/tim/git/DAV/foodprices2 unified.csv"
-    output_path = "/home/tim/git/DAV/Tim/Ignored/Graphs"
+    input_path = "/Users/Tim/UvA/DAV/git/Ignored/foodprices2 unified better.csv"
+    output_path = "/Users/Tim/UvA/DAV/git/Tim/Ignored/Graphs"
     use_years = False
     overview_graphs = []
     overview_only = False
