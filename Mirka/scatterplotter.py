@@ -1,7 +1,7 @@
 from bokeh.io import output_file, show, export_png
 from bokeh.plotting import figure, show, output_file
-from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label, DataRange1d
-import pandas as pd
+from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
+ import pandas as pd
 
 
 COUNTRY_2_ID = {
@@ -146,12 +146,32 @@ for year in years:
 
 
     regions = [COUNTRY_2_REGION[y] for y in year_rice_data_food.index.tolist()]
-    year_data_BMI["color"] = [REGION_ID_2_COLOR[x] for x in regions]
+    color_list = [REGION_ID_2_COLOR[x] for x in regions]
+
+    region_names = [REGION_ID_2_NAME[z] for z in regions]
 
 
     output_file("".join([output, ".html"]))
 
-    f = figure(plot_width = 1000, plot_height=650)
+    rice_data_list = []
+    for element in year_rice_data_food:
+        rice_data_list.append(element)
+
+    BMI_data_list = []
+    for element in year_data_BMI["".join(BMI_search)]:
+        BMI_data_list.append(element)
+
+    new_country_list = year_data_BMI["Country"].unique().tolist()
+
+
+    source = ColumnDataSource(data=dict(x=rice_data_list, y=BMI_data_list, countries=new_country_list, color=color_list, region=region_names))
+
+    hover = HoverTool(tooltips=[("Country", "@countries"), ("Region", "@region")])
+    tools = [hover, WheelZoomTool(), PanTool(), BoxZoomTool(), ResetTool(), SaveTool()]
+
+    f = figure(tools=tools, plot_width = 1000, plot_height=650)
+
+
 
     f.title.text = output
     f.title.text_font_size="25px"
@@ -160,8 +180,7 @@ for year in years:
     f.yaxis[0].axis_label="BMI"
     f.xaxis[0].axis_label="Prices per KG rice"
 
-    f.x_range=DataRange1d(start=0, end=4)
+    f.x_range=DataRange1d(start=0, end=3.5)
 
-    f.scatter(x=year_rice_data_food, y = year_data_BMI["".join(BMI_search)], size=8, fill_alpha=0.8, line_color = year_data_BMI["color"], fill_color = year_data_BMI["color"])
-
+    f.scatter(x="x", y="y", size = 8, color="color", source=source)
     show(f)
