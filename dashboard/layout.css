@@ -1,16 +1,4 @@
-div.header {
-    width:100%;
-    background:black;
-    color:white;
-    font-size:48px;
-}
-
-div.container {
-    width:100%;
-    margin:50px;
-    background:white;
-}
-
-div.plot {
-    border:2px solid black;
+body {
+  margin:0px;
+  padding:0px;
 }

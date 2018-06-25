@@ -3,5 +3,13 @@
   height:300px;
   background:DodgerBlue;
   color:white;
+  padding:0px;
+  margin:0px;
+}
+
+#HeaderTitle {
   font-family:Verdana;
+  font-size:36px;
+  color:white;
+  margin-left:10px;
 }
