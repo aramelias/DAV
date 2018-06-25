@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-    <?php
-      header("Location: http://aramelias.github.io/DAV/dashboard");
-      die();
-    ?>
+    <meta http-equiv="refresh" content="0; url=https://aramelias.github.io/DAV/" />
+    <p><a href="https://aramelias.github.io/DAV/">Redirect</a></p>
 </body>
 </html>
