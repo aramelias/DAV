@@ -11,7 +11,10 @@
 ###########################################################
 ## v0.3 (alpha):                                         ##
 ##   o Changed two-in-one graph to two seperate graphs   ##
-##     for overview (and error avoidance 0:^) )          ##
+##     for overview (and error avoidance 0:) )           ##
+###########################################################
+## v1.0:                                                 ##
+##   o Switched status to release                        ##
 ###########################################################
 
 import argparse
@@ -223,7 +226,7 @@ def main (input_path, input_path_bmi, average):
     # Welcoming message
     print("\n############################")
     print("##   LINEAIR REGRESSION   ##")
-    print("##          v0.1          ##")
+    print("##          v1.0          ##")
     print("############################\n")
 
     # Show the paths
