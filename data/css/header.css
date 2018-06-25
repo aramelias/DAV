@@ -1,6 +1,7 @@
-#HeaderBar {
+#HeaderContainer {
   width:100%;
   height:300px;
-  background:blue;
+  background:DodgerBlue;
   color:white;
+  font-family:Verdana, sans-serif;
 }
