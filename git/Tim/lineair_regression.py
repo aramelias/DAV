@@ -230,7 +230,7 @@ def collect_graphs (db_prices, db_BMI):
     return (price_list, BMI_list, price_year_list, BMI_year_list, total_things)
 
 # MAIN
-def main (input_path, input_path_bmi, average):
+def main (input_path, input_path_bmi, average, year_break):
     # Welcoming message
     print("\n############################")
     print("##   LINEAIR REGRESSION   ##")
@@ -313,6 +313,26 @@ def main (input_path, input_path_bmi, average):
 
     # Alright, we're nearly done: only add lineair regression
     print("Doing lineair regression...")
+
+    if year_break > -1:
+        # Use this year to break
+        old_y = list(total_y_price)
+        old_x = list(total_x_price)
+        total_y_price = []
+        total_x_price = []
+        for i, year in enumerate(old_y):
+            if year >= year_break:
+                total_x_price.append(old_x[i])
+                total_y_price.append(year)
+        old_y = list(total_y_BMI)
+        old_x = list(total_x_BMI)
+        total_y_BMI = []
+        total_x_BMI = []
+        for i, year in enumerate(old_y):
+            if year >= year_break:
+                total_x_BMI.append(old_x[i])
+                total_y_BMI.append(year)
+
     legend_list_price.append(plot_lineair_regression(f_price, total_y_price, total_x_price))
     legend_list_BMI.append(plot_lineair_regression(f_BMI, total_y_BMI, total_x_BMI))
 
@@ -345,21 +365,24 @@ if __name__ == "__main__":
     parser.add_argument("-i", "--input_path", help="The path to the to be checked database")
     parser.add_argument("-ib", "--input_path_bmi", help="The path to the BMI database")
     parser.add_argument("-a", "--average", action="store_true", help="Use the average of the countries to plot one line instead of multiple")
+    parser.add_argument("-y", "--year_break", type=int, help="The number at which the program will insert the break")
     args = parser.parse_args()
 
-    input_path = "/Users/Tim/UvA/DAV/Ignored/foodprices2 unified better.csv"
-    input_path_bmi = "/Users/Tim/UvA/DAV/BMI-Data-Less.csv"
+    input_path = "/Users/Tim/UvA/DAV/git/Ignored/foodprices2 unified better.csv"
+    input_path_bmi = "/Users/Tim/UvA/DAV/git/BMI-Data-Less.csv"
     average = False
+    year_break = -1
     if args.input_path:
         input_path = args.input_path
     if args.input_path_bmi:
         input_path_bmi = args.input_path_bmi
     if args.average:
         average = True
-
+    if args.year_break:
+        year_break = args.year_break
 
     try:
-        main (input_path, input_path_bmi, average)
+        main (input_path, input_path_bmi, average, year_break)
     except KeyboardInterrupt:
         print("\nInterrupted by user")
         sys.exit()
