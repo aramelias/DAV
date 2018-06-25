@@ -161,6 +161,15 @@ class LinePlotter ():
         if not self.figure:
             self.create_figure()
 
+        # Before plotting, try to fill each '0' with a 'np.nan'
+        old_y_list = list(y_list)
+        y_list = []
+        for data in old_y_list:
+            if data == 0:
+                y_list.append(np.nan)
+            else:
+                y_list.append(data)
+
         data = {"x":x_list, "y":y_list}
         for tip in tool_tips:
             data[tip] = tool_tips[tip]
