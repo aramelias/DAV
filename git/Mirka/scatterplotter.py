@@ -1,7 +1,7 @@
 from bokeh.io import output_file, show, export_png
-from bokeh.plotting import figure, show, output_file
-from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
- import pandas as pd
+from bokeh.plotting import figure, show, output_file, save
+from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool, Legend
+import pandas as pd
 
 
 COUNTRY_2_ID = {
@@ -129,7 +129,7 @@ for year in years:
     output_file_list = ["BMI_vs_Price_", str(year)]
     output = "".join(output_file_list)
 
-    BMI_search = [str(year), " – Both sexes"]
+    BMI_search = [str(year), " - Both sexes"]
     year_data_BMI = data_BMI[["Country", "".join(BMI_search)]]
 
     country_list_BMI = year_data_BMI["Country"].unique().tolist()
@@ -163,6 +163,8 @@ for year in years:
 
     new_country_list = year_data_BMI["Country"].unique().tolist()
 
+    print(new_country_list)
+    print("_______________________________________________")
 
     source = ColumnDataSource(data=dict(x=rice_data_list, y=BMI_data_list, countries=new_country_list, color=color_list, region=region_names))
 
@@ -182,5 +184,7 @@ for year in years:
 
     f.x_range=DataRange1d(start=0, end=3.5)
 
-    f.scatter(x="x", y="y", size = 8, color="color", source=source)
-    show(f)
+    f.scatter(x="x", y="y", size = 8, color="color", source=source, legend="region")
+
+
+    save(f)

@@ -7,7 +7,7 @@ function include_html() {
   for (var i = 0; i < z.length; i++) {
     var elem = z[i];
     // Get the elements with the include tag
-    file = elem.getAttribute("html-file-path");
+    file = elem.getAttribute("html-file-url");
     if (file) {
       // Do an HTTP request for the file
       console.log("Found tag, importing '" + file + "'");
@@ -20,7 +20,7 @@ function include_html() {
           else if (this.status == 404) {elem.innerHTML = "Page not found";}
           else {elem.innerHTML = "Could not import HTML"}
           // Remove the attribute, so no endless loops
-          elem.removeAttribute("html-file-path");
+          elem.removeAttribute("html-file-url");
           console.log("Done, looking for further includes")
           include_html();
         }
