@@ -22,6 +22,11 @@
 #   o Set WaitIndicator thread as a Daemon  #
 #     so interrupts are actually handled    #
 #############################################
+#   v2.3                                    #
+#   + Added 'update_preceding_text' to      #
+#     progress_bar, so the user can update  #
+#     the preceding text mid-execution      #
+#############################################
 
 
 # For a documentation, see my GitHub branch.
@@ -103,6 +108,12 @@ class ProgressBar():
         if clean:
             print("\033[K",end="\r")
         print("",end=ending_character)
+
+    # Update the preceding text mid-execution
+    def update_preceding_text (self, new_text):
+        self.preceding_text = new_text
+        self.width = self.total_width - 10 - len(self.preceding_text)
+        self.draw()
 
 class WaitIndicator (threading.Thread):
     # Animations
