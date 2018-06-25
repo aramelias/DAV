@@ -11,8 +11,19 @@
 ###########################################################
 ## v0.3 (alpha):                                         ##
 ##   o Changed two-in-one graph to two seperate graphs   ##
-##     for overview (and error avoidance 0:^) )          ##
+##     for overview (and error avoidance 0:) )           ##
 ###########################################################
+## v1.0:                                                 ##
+##   o Switched status to release                        ##
+###########################################################
+## v1.1:                                                 ##
+##   - Fixed a bug that would prevent program from       ##
+##     completing without errors (:#)                    ##
+##   - Fixed a bug that would show 'Lineair Regression ( ##
+##     <class 'range'>)' instead of just Lineair         ##
+##     Regression                                        ##
+###########################################################
+
 
 import argparse
 import pandas as pd
@@ -51,7 +62,7 @@ def plot_lineair_regression (figure, x, y):
     source = bkm.ColumnDataSource(data={"year":x, "value":y})
     linreg = figure.line("year", "value", source=source, color=("red" if range=="Price" else "blue"), muted_color=("red" if range=="Price" else "blue"), muted_alpha=0.2)
 
-    return ("Linear Regression ({})".format(range), [linreg])
+    return ("Linear Regression", [linreg])
 
 def get_random_rgb (RGBs):
     rand = random.randint(0, len(RGBs) - 1)
@@ -207,7 +218,7 @@ def collect_graphs (db_prices, db_BMI):
     # Sort on y_list
     for country in price_list:
         if len(price_list[country]) > 0 and len(price_year_list[country]) > 0:
-            new_years, new_price = zip(*sorted(zip(price_year_list[country], price_list[country])))
+            new_years, new_prices = zip(*sorted(zip(price_year_list[country], price_list[country])))
             price_list[country] = list(new_prices)
             price_year_list[country] = list(new_years)
     for country in BMI_list:
@@ -223,7 +234,7 @@ def main (input_path, input_path_bmi, average):
     # Welcoming message
     print("\n############################")
     print("##   LINEAIR REGRESSION   ##")
-    print("##          v0.1          ##")
+    print("##          v1.1          ##")
     print("############################\n")
 
     # Show the paths
