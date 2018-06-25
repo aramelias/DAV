@@ -1,122 +1,78 @@
 # TRY THIS AT HOME:
 # Welcome to the test file for Tim! Do here whatever your heart desires.
 
+import argparse
 import pandas as pd
+import sys
 import os
-import datetime
+import time
 import bokeh.plotting as plt
+import bokeh.models as bkm
+import bokeh.layouts as bkl
 import bokeh
+import datetime
+import random
+import numpy as np
+from sklearn import datasets
+from sklearn.cluster import KMeans
+from sklearn.manifold import TSNE
+import sklearn.metrics as sm
+
 from TimsStuff.progressBar import ProgressBar
+import scatter_plot
 
-# Function to return a string, only so that it is breaked off with a certain
-#   indentation
-def break_off (text, indentation=""):
-    words = text.split()
-    line = indentation
-    end_text = ""
-    # Get screen width
-    _, screen_width = os.popen('stty size', 'r').read().split()
-    screen_width = int(screen_width)
-    while len(words) > 0:
-        word = words[0]
-        words = words[1:]
-        if len(indentation + word) > screen_width:
-            # Create two new words, and try again
-            end_text += line[:-1] + "\n"
-            line = indentation
-            words = [word[:screen_width - len(indentation)]] + [word[screen_width - len(indentation):]] + words
-        elif len(line + word) > screen_width:
-            end_text += line[:-1] + "\n"
-            line = indentation
-            words = [word] + words
-        else:
-            # We good to go
-            line += word + " "
-    # Add remaining line
-    end_text += line
-    return end_text
+# Test for t-SNE
+id_to_color = {
+    1:bokeh.colors.RGB(255, 0, 0),
+    2:bokeh.colors.RGB(0, 255, 0),
+    3:bokeh.colors.RGB(0, 0, 255),
+    4:bokeh.colors.RGB(0, 127, 127),
+    5:bokeh.colors.RGB(127, 0, 127),
+    6:bokeh.colors.RGB(127, 127, 0),
+    7:bokeh.colors.RGB(127, 0, 0),
+    8:bokeh.colors.RGB(0, 127, 0)
+}
 
-print(break_off("test" * 25, indentation="    "))
+x = pd.DataFrame()
+x["x"] = [1, 2, 3, 4, 5, 6, 7, 8]
+x["y"] = [1, 2, 3, 4, 5, 6, 7, 8]
+x["z"] = [1, 2, 3, 4, 5, 6, 7, 8]
+x["lbl"] = [1, 2, 3, 4, 5, 6, 7, 8]
+x["to_drop"] = [1, 2, 3, 4, 5, 6, 7, 8]
+x["drop_this_too"] = [1, 2, 3, 4, 5, 6, 7, 8]
 
-def resize (text, length):
-    while len(text) < length:
-        text = " " + text
-    return text
+x = x.drop(["to_drop", "drop_this_too"], axis=1)
 
-print("'" + resize("123", 3) + "'")
+model = KMeans(n_clusters=8)
+model.fit(x)
+x["color"] = model.labels_
 
-to_do = """Afghanistan,
-Algeria,
-Armenia,
-Azerbaijan,
-Bangladesh,
-Benin,
-Bhutan,
-Bolivia (Plurinational State of),
-Burkina Faso,
-Burundi,
-Cabo Verde,
-Cambodia,
-Cameroon,
-Central African Republic,
-Chad,
-Colombia,
-Congo,
-Costa Rica,
-Cote d'Ivoire,
-Democratic Republic of the Congo,
-Djibouti,
-Egypt,
-El Salvador,
-Ethiopia,
-Gambia,
-Georgia,
-Ghana,
-Guatemala,
-Guinea,
-Guinea-Bissau,
-Haiti,
-Honduras,
-India,
-Indonesia,
-Iran (Islamic Republic of),
-Iraq,
-Jordan,
-Kenya,
-Kyrgyzstan,
-Lao People's Democratic Republic,
-Lebanon,
-Lesotho,
-Liberia,
-Madagascar,
-Malawi,
-Mali,
-Mauritania,
-Mozambique,
-Myanmar,
-Nepal,
-Niger,
-Nigeria,
-Pakistan,
-Panama,
-Peru,
-Philippines,
-Rwanda,
-Senegal,
-Somalia,
-Sri Lanka,
-Swaziland,
-Syrian Arab Republic,
-Tajikistan,
-Timor-Leste,
-Turkey,
-Uganda,
-Ukraine,
-United Republic of Tanzania,
-Yemen,
-Zambia,
-Zimbabwe"""
+print(x)
 
-for i, word in enumerate(to_do.split("\n")):
-    word = word.replace(",", "")
-    print("\"{}\":{},".format(word, i))
+rndperm = np.random.permutation(x.shape[0])
+
+print(rndperm)
+
+x_embedded = TSNE(n_components=2).fit_transform(x.values)
+
+print(x_embedded)
+
+new_color = []
+for i in range(len(x["color"])):
+    new_color.append(id_to_color[x["color"][i] + 1])
+
+x["color"] = new_color
+
+# Create hover tool
+hover = bkm.HoverTool(tooltips=[("Label", "@lbl"), ("xy", "@xyz")])
+
+xyz = []
+for i in range(len(x["x"])):
+    xyz.append(str(x["x"][i]) + "," + str(x["y"][i]) + "," + str(x["z"][i]))
+
+data = {"x":x_embedded[:, 0], "y":x_embedded[:, 1], "color":x["color"], "xyz":xyz, "lbl":x["lbl"]}
+
+# Create figure
+f = plt.figure(title="A", x_axis_label = "B", y_axis_label = "C", tools=[hover, bkm.WheelZoomTool(), bkm.BoxZoomTool(), bkm.PanTool(), bkm.SaveTool(), bkm.ResetTool()], width=900)
+f.scatter("x", "y", source=bokeh.models.ColumnDataSource(data=data), color="color", size=10)
+plt.show(f)

@@ -28,8 +28,6 @@
 #     legend problem was found...                   #
 #####################################################
 
-# TODO: Plot as PNG, create GIF
-
 import argparse
 import pandas as pd
 import sys
@@ -212,6 +210,7 @@ def do_graph_animation (graph_product, title, path, progress_bar):
     for region in graph_product:
         if region not in country_data:
             country_data[region] = {}
+        lowest_region_year = float("inf")
         for timestamp in graph_product[region]:
             x_list, y_list = graph_product[region][timestamp]
             # Create the dataset
@@ -223,6 +222,8 @@ def do_graph_animation (graph_product, title, path, progress_bar):
                 # Take care we get some limits
                 if timestamp < lowest_year:
                     lowest_year = timestamp
+                if timestamp < lowest_region_year:
+                    lowest_region_year = timestamp
                 if timestamp > highest_year:
                     highest_year = timestamp
                 if country_price < lowest_price:
@@ -245,12 +246,12 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
 
         # Now create a nice source of the data
-        data_source = bokeh.models.ColumnDataSource(data=country_data[region][lowest_year])
+        data_source = bokeh.models.ColumnDataSource(data=country_data[region][lowest_region_year])
         sources.append([data_source, region])
 
         # Now plot it
         region_color = REGION_NAME_2_COLOR[region]
-        elem = f.scatter("x", "y", source=data_source, color=region_color, muted_color=region_color, muted_alpha=0.2, size=10)
+        elem = f.scatter("x", "y", source=data_source, color=region_color, muted_color=region_color, muted_alpha=0.1, size=10)
 
         # Add elem to the legends
         legend_list.append((region, [elem]))
@@ -262,8 +263,8 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
     legend = bokeh.models.Legend(items=legend_list, location=(0,0), click_policy="mute")
 
-    f.x_range = bkm.DataRange1d(start=lowest_BMI, end=highest_BMI)
-    f.y_range = bkm.DataRange1d(start=lowest_price, end=highest_price)
+    f.x_range = bkm.DataRange1d(start=lowest_price, end=highest_price)
+    f.y_range = bkm.DataRange1d(start=lowest_BMI, end=highest_BMI)
 
     # Make the slider
     callback = bokeh.models.CustomJS(args=dict(sources=sources, all_data=country_data), code=callback_code)
@@ -280,9 +281,9 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
 # Hiarchy:
 #   product
-#       country
+#       region
 #           time
-#               (BMI (counter, total), Price (counter, total))
+#               (x_list:{"country":10}, y_list:{"country":0.90})
 def collect_graphs (db_prices, db_BMI):
     print("  - Collecting info...")
     data_list = {}
@@ -375,8 +376,13 @@ def main (input_path, input_path_bmi, output_path):
     print("##     v2.0     ##")
     print("##################\n")
 
+    print("USING PATHS:")
+    print("  - Prices DB:     {}".format(input_path))
+    print("  - BMI DB:        {}".format(input_path_bmi))
+    print("  - Output folder: {}".format(output_path))
+
     # Read DB
-    print("Reading database...")
+    print("\nReading database...")
     db_price = pd.read_csv(input_path)
     print("Done, reading BMI-database...")
     db_bmi = pd.read_csv(input_path_bmi)
