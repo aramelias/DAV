@@ -134,7 +134,7 @@ def convert_to_source(data_food, data_BMI):
         print("Creating source for ", year)
         year_rice_data_food = all_rice_data_food[all_rice_data_food["year"] == year]
 
-        BMI_search = [str(year), " – Both sexes"]
+        BMI_search = [str(year), " - Both sexes"]
         year_data_BMI = data_BMI[["Country", "".join(BMI_search)]]
 
         country_list_BMI = year_data_BMI["Country"].unique().tolist()
@@ -187,7 +187,7 @@ def scroll_plotter(first_source, sources):
 
     f = figure(tools=tools, plot_width = 1000, plot_height=650)
 
-    f.scatter(x="x", y="y", size = 8, color="colors", source=source)
+    f.scatter(x="x", y="y", size = 8, color="colors", source=source, legend="regions")
 
     callback = CustomJS(args=dict(source=source, source_list=sources), code= """
     var slider_value = cb_obj.value;
@@ -202,13 +202,13 @@ def scroll_plotter(first_source, sources):
             source_data["regions"] = new_source["regions"]
             break;
         }
-
-        // Update
-        source.change.emit();
     }
+    // Update
+    source.change.emit();
+
     """)
 
-    slider = Slider(start = sources[0][0], end = sources.pop()[0], value = 1, step =1, title="Year")
+    slider = Slider(start = sources[0][0], end = sources[-1][0], value = 1994, step =1, title="Year")
     slider.js_on_change('value', callback)
 
     f.yaxis[0].axis_label="BMI"
