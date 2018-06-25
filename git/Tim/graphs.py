@@ -10,6 +10,20 @@
 #   o Total rewrite, in order to allow for  #
 #     bokeh, and easier graph management    #
 #############################################
+# v4.0:                                     #
+#   + Added ability to generate graphs      #
+#     for each region in a country (using   #
+#     rice)                                 #
+#############################################
+# v4.1:                                     #
+#   o Updated Line Stylist to nowadays      #
+#     standard                              #
+#############################################
+# v4.2:                                     #
+#   o Instead of updateing, replaced it by  #
+#     LinePlotter, which is a new framework #
+#     to plot graphs                        #
+#############################################
 
 
 import argparse
@@ -64,20 +78,29 @@ REGION_NAME_2_COLOR = {
 }
 
 
-# Class to style bokeh lines
-class LineStylist ():
-    def __init__(self, unique_rgbs=8, width=2):
-        self.width = width
-        self.dash_counter = 0
+class LinePlotter ():
+    def __init__(self, path, title, x_label, y_label, x_axis_type="", tool_tips=[], unique_rgbs=8, use_hover=True, use_dash=False):
+        self.path = path
         self.unique_rgbs = unique_rgbs
-        # Generate unique RGB list
+        self.dash_counter = 0
+        self.title = title
+        self.x_label = x_label
+        self.y_label = y_label
+        self.tool_tips = tool_tips
+        self.use_hover_tool = use_hover
+        self.use_dash = use_dash
+        self.x_axis_type = x_axis_type
 
         # Check unique_RGB
-        if unique_rgbs < 1:
-            unique_rgbs = 1
+        if self.unique_rgbs < 1:
+            self.unique_rgbs = 1
 
         self.generate_rgb_list()
 
+        # Set a standard figure
+        self.create_figure()
+
+    # Generates unique RGB list
     def generate_rgb_list (self):
         # Now generate
         self.RGBs = []
@@ -91,7 +114,7 @@ class LineStylist ():
                     # Add to the RGBs list
                     self.RGBs.append((int((r / N) * 255), int((g / N) * 255), int((b / N) * 255)))
 
-    # Return a random RGB colour from the list generated on init
+    # Returns random RGB from list
     def get_random_rgb (self):
         rand = random.randint(0, len(self.RGBs) - 1)
         to_return = self.RGBs[rand]
@@ -109,23 +132,68 @@ class LineStylist ():
         self.dash_counter = (self.dash_counter + 1) % 8
         return line_dash
 
-    def reset (self):
-        self.dash_counter = 0
+    # Inits the figure
+    def create_figure (self):
+        tool_list = [bokeh.models.WheelZoomTool(), bokeh.models.BoxZoomTool(), bokeh.models.PanTool(), bokeh.models.SaveTool(), bokeh.models.ResetTool()]
 
-    # Style a line
-    def style(self, figure, x_list, y_list, legend_label, color="", legend=True):
-        # Draw the line with fixed width, legend
+        if self.use_hover_tool:
+            # Create hover tool
+            hover = bokeh.models.HoverTool(tooltips=self.tool_tips)
+            tool_list = [hover] + tool_list
+
+        # Create figure
+        if self.x_axis_type == "":
+            self.figure = plt.figure(title=self.title, x_axis_label = self.x_label, y_axis_label = self.y_label, tools=tool_list, width=900)
+        else:
+            self.figure = plt.figure(title=self.title, x_axis_label = self.x_label, y_axis_label = self.y_label, x_axis_type = self.x_axis_type, tools=tool_list, width=900)
+
+        # Create new legend list
+        self.legend_list = []
+
+    # Plot a new line, with dots
+    # Tool Tips must be:
+    #
+    def plot (self, x_list, y_list, legend_label, tool_tips={}, color="", use_roundels=True):
         if color == "":
             color = self.get_random_rgb()
-        if legend:
-            figure.line(x_list, y_list, line_width=self.width, legend=legend_label, color=color, line_dash=self.get_line_style())
-        else:
-            figure.line(x_list, y_list, line_width=self.width, color=color, line_dash=self.get_line_style())
 
-        # Filled circle
-        figure.circle(x_list, y_list, line_color=color, fill_color=color, size=4)
+        # Plot
+        if not self.figure:
+            self.create_figure()
 
+        # Before plotting, try to fill each '0' with a 'np.nan'
+        old_y_list = list(y_list)
+        y_list = []
+        for data in old_y_list:
+            if data == 0:
+                y_list.append(np.nan)
+            else:
+                y_list.append(data)
 
+        data = {"x":x_list, "y":y_list}
+        for tip in tool_tips:
+            data[tip] = tool_tips[tip]
+        source = bokeh.models.ColumnDataSource(data=data)
+
+        line_dash = [1, 0]
+        if self.use_dash:
+            line_dash = self.get_line_style()
+
+        new_line = self.figure.line("x", "y", source=source, color=color, muted_color=color, muted_alpha=0.2, line_dash=line_dash)
+        elements = [new_line]
+        if use_roundels:
+            elements.append(self.figure.circle("x", "y", source=source, line_color=color, fill_color="white", muted_line_color=color, muted_fill_color="white", muted_alpha=0.2))
+        self.legend_list.append((legend_label, elements))
+
+    # Saves the plot to a file and clears for a new one
+    def flush (self):
+        plt.output_file(self.path, mode="inline")
+
+        # Create legend
+        legend = bokeh.models.Legend(items=self.legend_list, location=(0, 0), click_policy="mute")
+        self.figure.add_layout(legend, "right")
+        plt.save(self.figure)
+        self.create_figure()
 
 def is_int (x):
     try:
@@ -147,6 +215,7 @@ def collect_graphs (db, mode, use_years):
     data_list = {}
     total_things = 0
     progress_bar = ProgressBar(ending_character="", max_amount=len(db), preceding_text="   ")
+    nan_counter = 0
     for row in db.itertuples():
         # Set the first and second order sorting
         if mode == "products":
@@ -155,20 +224,28 @@ def collect_graphs (db, mode, use_years):
         elif mode == "countries":
             first_order = row.country_name
             secnd_order = row.product_name
-        elif mode == "regions":
+        elif "regions" in mode:
             # Now create
+            if mode == "regions":
+                tier1 = REGION_ID_2_NAME[COUNTRY_2_REGION[row.country_name]]
+                tier2 = row.country_name
+            elif mode == "inner_regions":
+                tier1 = row.country_name
+                tier2 = row.region_name
+                if tier2 == 0:
+                    tier2 == "NaN_{}".format(nan_counter)
+                    nan_counter += 1
 
-            # Quickly eliminate all rice things
+            # Quickly eliminate all rice things not rice
             if "rice" not in row.product_name.lower() or row.country_name == "Myanmar":
                 # Shame, kys
                 progress_bar.update()
                 continue
 
-            region = REGION_ID_2_NAME[COUNTRY_2_REGION[row.country_name]]
-            if region not in data_list:
-                data_list[region] = {}
-            if row.country_name not in data_list[region]:
-                data_list[region][row.country_name] = {}
+            if tier1 not in data_list:
+                data_list[tier1] = {}
+            if tier2 not in data_list[tier1]:
+                data_list[tier1][tier2] = {}
                 total_things += 1
 
             # Create datetime object
@@ -176,17 +253,17 @@ def collect_graphs (db, mode, use_years):
                 timestamp = datetime.date(row.year, 12, 31)
             else:
                 timestamp = datetime.date(row.year, row.month, day_2_month[row.month - 1])
-            if timestamp not in data_list[region][row.country_name]:
-                data_list[region][row.country_name][timestamp] = (0, 0)
+            if timestamp not in data_list[tier1][tier2]:
+                data_list[tier1][tier2][timestamp] = (0, 0)
 
-            counter, total = data_list[region][row.country_name][timestamp]
-            data_list[region][row.country_name][timestamp] = (counter + 1, total + row.standardized_prices)
+            counter, total = data_list[tier1][tier2][timestamp]
+            data_list[tier1][tier2][timestamp] = (counter + 1, total + row.standardized_prices)
             progress_bar.update()
         else:
             print("Pattern {} is unknown, skipping...".format(mode))
             return False
 
-        if mode != "regions":
+        if "regions" not in mode:
             # Now create
             if first_order not in data_list:
                 data_list[first_order] = {}
@@ -263,27 +340,20 @@ def insert_sorted (element, list1, list2):
 # Saves or shows a graph
 def do_graph (tier1, graphs, path, title):
     # User wants to see an overview
-    plt.output_file(path, mode="inline")
-
-    f = plt.figure(title=title.format(tier1), x_axis_label=XLABEL, y_axis_label=YLABEL, x_axis_type="datetime", plot_width = 800)
-
-    line_stylist = LineStylist()
+    line_plotter = LinePlotter(path, title, x_label=XLABEL, y_label=YLABEL, x_axis_type="datetime", use_hover=False)
     for tier2 in graphs[tier1]:
-        color = line_stylist.get_random_rgb()
         x_list, y_list = graphs[tier1][tier2]
-        line_stylist.style(f, x_list, y_list, tier2, color=color)
-        line_stylist.reset()
-
+        if not isinstance(tier2, str):
+            tier2 = "NaN"
+        line_plotter.plot(x_list, y_list, tier2)
     # Save the graph instead
-    plt.save(f)
+    line_plotter.flush()
 
 def do_graph_singular (x_list, y_list, title, path):
     # Save the graph
-    plt.output_file(path, mode="inline")
-    f = plt.figure(title=title, x_axis_label = XLABEL, y_axis_label = YLABEL, x_axis_type="datetime", plot_width = 800)
-    line_stylist = LineStylist()
-    line_stylist.style(f, x_list, y_list, title, legend=False)
-    plt.save(f)
+    line_plotter = LinePlotter(path, title, XLABEL, YLABEL, x_axis_type="datetime", use_hover=False, use_dash=True)
+    line_plotter.plot(x_list, y_list, "Price VS Time")
+    line_plotter.flush()
 
 
 # Main function
@@ -295,7 +365,7 @@ def main (input_path, output_path, use_years, overview_graphs, overview_only, so
     # Welcome message
     print("\n############")
     print("## GRAPHS ##")
-    print("##  v3.0  ##")
+    print("##  v4.2  ##")
     print("############\n")
 
     if use_years:
@@ -307,6 +377,7 @@ def main (input_path, output_path, use_years, overview_graphs, overview_only, so
     # Read DB
     print("Reading database...")
     database = pd.read_csv(input_path)
+    database = database.fillna(0)
     print("Done")
 
     # Time 2 create sum graphs
@@ -330,7 +401,7 @@ def main (input_path, output_path, use_years, overview_graphs, overview_only, so
                 file_name = tier2.replace("/", " or ") + ".html"
                 x_list, y_list = graphs[tier1][tier2]
                 # Write it
-                do_graph_singular(x_list, y_list, tier2, path=dir_path + file_name)
+                do_graph_singular(x_list, y_list, tier2, dir_path + file_name)
                 progress_bar.update()
                 total_graphs += 1
     print("\nDone")
@@ -357,6 +428,8 @@ def main (input_path, output_path, use_years, overview_graphs, overview_only, so
                 file_name = tier1.replace("/", " or ") + ".html"
                 if pattern == "regions":
                     title = "Average price of rice between countries in {}".format(tier1)
+                elif pattern == "inner_regions":
+                    title = "Average price of rice between the regions in {}".format(tier1)
                 else:
                     title = "Price of {}".format(tier1)
                 do_graph (tier1, graphs, dir_path + file_name, title)
