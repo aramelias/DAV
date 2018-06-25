@@ -281,9 +281,9 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
 # Hiarchy:
 #   product
-#       country
+#       region
 #           time
-#               (BMI (counter, total), Price (counter, total))
+#               (x_list:{"country":10}, y_list:{"country":0.90})
 def collect_graphs (db_prices, db_BMI):
     print("  - Collecting info...")
     data_list = {}
