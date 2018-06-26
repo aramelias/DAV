@@ -110,7 +110,7 @@ REGION_ID_2_COLOR = {
 }
 
 
-data_food = pd.read_csv("../../foodprices2 unified better.csv")
+data_food = pd.read_csv("../../../foodprices2 unified better.csv")
 data_BMI = pd.read_csv("../BMI-Data-Less.csv")
 
 rice_data_food = data_food["product_name"].str.contains("Rice")
