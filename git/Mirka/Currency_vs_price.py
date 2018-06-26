@@ -85,7 +85,7 @@ def graph_plotter(ylist1, ylist2, xlist3, name):
 
     f.line(x="x", y="y", line_width=2, color = "red", legend= "Exchange rate", source=source1)
     f.line(x="x", y="y", line_width=2, color = "Blue", legend= "Product prices", source=source2)
-
+    f.legend.location = "bottom_right"
 
     save(f)
 
@@ -117,8 +117,6 @@ def creating_graphs(data_food, data_currency, normal_cur_dict, normal_food_dict)
                     data_years_all.append(int("".join([str(year), str(month)])))
 
         data_currency_all = data_of_currency.values[0][9:312+9]
-
-        print(len(data_food_all), len(data_currency_all), len(data_years_all))
 
         data_currency_all = normalise(data_currency_all, normal_cur_dict, cur)
         data_food_all = normalise(data_food_all, normal_food_dict, cur)

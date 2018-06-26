@@ -58,7 +58,6 @@ def normalisation_gathering_food(food_data):
     return dict_food
 
 def normalise(data_list, min_max_dict, key):
-    print("normalising")
     output_list = []
     minimum = min_max_dict[key][1]
     maximum = min_max_dict[key][0]
@@ -90,6 +89,7 @@ def graph_plotter(ylist1, ylist2, xlist3, name):
 
     f.line(x="x", y="y", line_width=2, color = "red", legend= "Exchange rate", source=source1)
     f.line(x="x", y="y", line_width=2, color = "Blue", legend= "Product prices", source=source2)
+    f.legend.location = "bottom_right"
 
 
     save(f)
