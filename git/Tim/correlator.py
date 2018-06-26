@@ -17,6 +17,9 @@
 ##   o Swapped from all-at-once plotting to fancy little ##
 ##     terminal, so there's more overview                ##
 ###########################################################
+## v1.0 (release):                                       ##
+##   o Switches status to release                        ##
+###########################################################
 
 import argparse
 import pandas as pd
@@ -46,7 +49,7 @@ def main (input_path, pattern):
     # Welcome message
     print("\n################")
     print("## CORRELATOR ##")
-    print("##    v0.3    ##")
+    print("##    v1.0    ##")
     print("################\n")
 
     print("USING PATHS:")
