@@ -4,6 +4,7 @@ from bokeh.plotting import figure, show, output_file, save
 from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
 from bokeh.models import CustomJS, Slider, ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
 import pandas as pd
+import datetime
 
 def reading_databases():
     print("reading databases")
@@ -78,7 +79,7 @@ def graph_plotter(ylist1, ylist2, xlist3, name):
     source1 = ColumnDataSource(data=dict(x=xlist3, y=ylist1))
     source2 = ColumnDataSource(data=dict(x=xlist3, y=ylist2))
 
-    f = figure(plot_width = 1000, plot_height=650)
+    f = figure(plot_width = 1000, plot_height=650, x_axis_type = "datetime")
 
     f.title.text = name
     f.title.text_font_size="25px"
@@ -116,10 +117,8 @@ def creating_graphs(data_food, data_currency, normal_cur_dict, normal_food_dict)
                     data_food_all.append(placeholder[0])
                 else:
                     data_food_all.append("nan")
-                if month < 10:
-                    data_years_all.append(int("".join([str(year), "0", str(month)])))
-                else:
-                    data_years_all.append(int("".join([str(year), str(month)])))
+                data_years_all.append(datetime.date(year, month, 1))
+
 
         data_currency_all = data_of_currency.values[0][9:312+9]
 
