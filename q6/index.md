@@ -9,6 +9,9 @@ There is also a clear connection between geographical location and BMI: countrie
 
 The only exception to this statement is that the *ratio* between price and BMI does not change in similar ways for countries within the same region.
 
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css" type="text/css" />
+
 <script src="../data/js/include_html.js"></script>
 <div html-file-url="../git/Mirka/slider.html"></div>
 <script>include_html()</script>
