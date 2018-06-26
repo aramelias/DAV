@@ -46,6 +46,13 @@
 #     specific graphs, as this has been     #
 #     moved back to graphs.py               #
 #############################################
+# v3.2:                                     #
+#   + Added a new pattern: analyse a graph  #
+#     with _all_ foodprices in them,        #
+#     averaged                              #
+#   o Changed LineStylist to LinePlotter,   #
+#     same way as graphs.py                 #
+#############################################
 
 import argparse
 import pandas as pd
@@ -77,20 +84,29 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# Class to style bokeh lines
-class LineStylist ():
-    def __init__(self, unique_rgbs=8, width=2):
-        self.width = width
-        self.dash_counter = 0
+class LinePlotter ():
+    def __init__(self, path, title, x_label, y_label, x_axis_type="", tool_tips=[], unique_rgbs=8, use_hover=True, use_dash=False):
+        self.path = path
         self.unique_rgbs = unique_rgbs
-        # Generate unique RGB list
+        self.dash_counter = 0
+        self.title = title
+        self.x_label = x_label
+        self.y_label = y_label
+        self.tool_tips = tool_tips
+        self.use_hover_tool = use_hover
+        self.use_dash = use_dash
+        self.x_axis_type = x_axis_type
 
         # Check unique_RGB
-        if unique_rgbs < 1:
-            unique_rgbs = 1
+        if self.unique_rgbs < 1:
+            self.unique_rgbs = 1
 
         self.generate_rgb_list()
 
+        # Set a standard figure
+        self.create_figure()
+
+    # Generates unique RGB list
     def generate_rgb_list (self):
         # Now generate
         self.RGBs = []
@@ -104,7 +120,7 @@ class LineStylist ():
                     # Add to the RGBs list
                     self.RGBs.append((int((r / N) * 255), int((g / N) * 255), int((b / N) * 255)))
 
-    # Return a random RGB colour from the list generated on init
+    # Returns random RGB from list
     def get_random_rgb (self):
         rand = random.randint(0, len(self.RGBs) - 1)
         to_return = self.RGBs[rand]
@@ -122,24 +138,71 @@ class LineStylist ():
         self.dash_counter = (self.dash_counter + 1) % 8
         return line_dash
 
-    def reset (self):
-        self.dash_counter = 0
-        self.generate_rgb_list()
+    # Inits the figure
+    def create_figure (self):
+        tool_list = [bokeh.models.WheelZoomTool(), bokeh.models.BoxZoomTool(), bokeh.models.PanTool(), bokeh.models.SaveTool(), bokeh.models.ResetTool()]
 
-    # Style a line
-    def style(self, figure, x_list, y_list, legend_label, color="", legend=True):
-        # Draw the line with fixed width, legend
+        if self.use_hover_tool:
+            # Create hover tool
+            hover = bokeh.models.HoverTool(tooltips=self.tool_tips)
+            tool_list = [hover] + tool_list
+
+        # Create figure
+        if self.x_axis_type == "":
+            self.figure = plt.figure(title=self.title, x_axis_label = self.x_label, y_axis_label = self.y_label, tools=tool_list, width=1280)
+        else:
+            self.figure = plt.figure(title=self.title, x_axis_label = self.x_label, y_axis_label = self.y_label, x_axis_type = self.x_axis_type, tools=tool_list, width=1280)
+
+        # Create new legend list
+        self.legend_list = []
+
+    # Plot a new line, with dots
+    # Tool Tips must be:
+    #
+    def plot (self, x_list, y_list, legend_label, tool_tips={}, color="", use_roundels=True):
         if color == "":
             color = self.get_random_rgb()
-        if legend:
-            figure.line(x_list, y_list, line_width=self.width, legend=legend_label, color=color, line_dash=self.get_line_style())
-        else:
-            figure.line(x_list, y_list, line_width=self.width, color=color, line_dash=self.get_line_style())
 
-        # Filled circle
-        figure.circle(x_list, y_list, line_color=color, fill_color=color, size=4)
+        # Plot
+        if not self.figure:
+            self.create_figure()
 
+        # Before plotting, try to fill each '0' with a 'np.nan'
+        old_y_list = list(y_list)
+        y_list = []
+        for data in old_y_list:
+            if data == 0:
+                y_list.append(np.nan)
+            else:
+                y_list.append(data)
 
+        data = {"x":x_list, "y":y_list}
+        for tip in tool_tips:
+            data[tip] = tool_tips[tip]
+        source = bokeh.models.ColumnDataSource(data=data)
+
+        line_dash = [1, 0]
+        if self.use_dash:
+            line_dash = self.get_line_style()
+
+        new_line = self.figure.line("x", "y", source=source, color=color, muted_color=color, muted_alpha=0.2, line_dash=line_dash)
+        elements = [new_line]
+        if use_roundels:
+            elements.append(self.figure.circle("x", "y", source=source, line_color=color, fill_color="white", muted_line_color=color, muted_fill_color="white", muted_alpha=0.2))
+        self.legend_list.append((legend_label, elements))
+
+    # Saves the plot to a file and clears for a new one
+    def flush (self, mode="save"):
+        plt.output_file(self.path, mode="inline")
+
+        # Create legend
+        legend = bokeh.models.Legend(items=self.legend_list, location=(0, 0), click_policy="mute")
+        self.figure.add_layout(legend, "right")
+        if mode == "save":
+            plt.save(self.figure)
+        elif mode == "show":
+            plt.show(self.figure)
+        self.create_figure()
 
 
 # Handy class to divide things in similarity groups
@@ -300,35 +363,31 @@ def break_off (text, first_indentation="", indentation=""):
 # Saves or shows a graph
 def do_graph (group_name, grouped, all_years, mode, path=""):
     # User wants to see an overview
-    plt.output_file(path, mode="inline")
-    f = plt.figure(title="Price of {}".format(group_name), x_axis_label=XLABEL, y_axis_label=YLABEL)
     j = 1
-    line_stylist = LineStylist()
+    line_plotter = LinePlotter(path, "Price of {}".format(group_name), XLABEL, YLABEL, use_dash=True, tool_tips=[("Tag", "@tag"), ("Year", "@x")])
     for group in grouped[group_name]:
         k = 0
-        color = line_stylist.get_random_rgb()
+        color = line_plotter.get_random_rgb()
         for label, data in group:
             plot_label = label + " (group {})".format(j)
-            line_stylist.style(f, all_years, data, plot_label, color=color)
+            line_plotter.plot(all_years, data, plot_label, color=color, tool_tips={"tag":[plot_label] * len(all_years)})
             k += 1
-        line_stylist.reset()
+        line_plotter.dash_counter = 0
         j += 1
 
     # We're done, show
     if mode == "show":
         # Show the graph
-        plt.show(f)
+        line_plotter.flush(mode="show")
     elif mode == "save":
         # Save the graph instead
-        plt.save(f)
+        line_plotter.flush()
 
 def do_graph_singular (x_list, y_list, title, path=""):
     # Save the graph
-    plt.output_file(path, mode="inline")
-    f = plt.figure(title=title, x_axis_label = XLABEL, y_axis_label = YLABEL)
-    line_stylist = LineStylist()
-    line_stylist.style(f, x_list, y_list, title, legend=False)
-    plt.save(f)
+    line_plotter = LinePlotter(path, title, XLABEL, YLABEL, use_hover=False)
+    line_plotter.plot(x_list, y_list, title)
+    line_plotter.flush()
 
 # Function to return a list of graphs:
 #   {"sort_1":{"sort_2":[[1,2],[3,4]]}}
@@ -349,6 +408,11 @@ def collect_graphs (db, mode):
         elif mode == "countries":
             first_order = row.country_name
             secnd_order = row.product_name
+        elif mode == "products_overview":
+            first_order = "overview"
+            secnd_order = row.product_name
+            if "bread" in secnd_order.lower():
+                secnd_order = "Bread"
         else:
             print("Pattern {} is unknown, skipping...".format(mode))
             return False
@@ -411,7 +475,7 @@ def main(input_path, output_path, analyser_patterns, use_years, margin, deep, ge
     # Welcome message
     print("\n{}##############".format(bcolors.BOLD))
     print("## ANALYSER ##")
-    print("##   v3.1   ##")
+    print("##   v3.2   ##")
     print("##############{}\n".format(bcolors.ENDC))
 
     wait_indicator = WaitIndicator(WaitIndicator.SpinAnimation, automatic=True, preceding_text="Reading database... ", end_text="Reading database... Done", refresh_rate=0.2)
@@ -538,7 +602,7 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--generate_specifics", action="store_true", help="If given, the script will also write each specific graph it creates")
     args = parser.parse_args()
 
-    input_path = "/Users/Tim/UvA/DAV/Ignored/foodprices2 unified better.csv"
+    input_path = "/Users/Tim/UvA/DAV/git/Ignored/foodprices2 unified better.csv"
     output_path = ""
     analyser_pattern = []
     use_years = False
