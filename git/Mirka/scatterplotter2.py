@@ -114,7 +114,7 @@ REGION_ID_2_COLOR = {
 
 def reading_databases():
     print("reading databases")
-    data_food = pd.read_csv("../../foodprices2 unified better.csv")
+    data_food = pd.read_csv("../../../foodprices2 unified better.csv")
     data_BMI = pd.read_csv("../BMI-Data-Less.csv")
     return data_food, data_BMI
 
