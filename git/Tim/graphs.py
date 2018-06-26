@@ -319,13 +319,13 @@ def collect_graphs (db, mode, use_years):
             x_list, y_list = data_list[first_order][secnd_order]
             for timestamp in all_dates:
                 if timestamp not in x_list:
-                    x_list, y_list = insert_sorted(timestamp, x_list, y_list)
+                    x_list, y_list = insert_sorted(timestamp, x_list, y_list, use_years)
             data_list[first_order][secnd_order] = (x_list, y_list)
             progress_bar.update()
     return (data_list, total_things, all_dates)
 
 # Insert an element into both list, so list1 is still sorted
-def insert_sorted (element, list1, list2):
+def insert_sorted (element, list1, list2, use_years):
     pre_list1 = []
     aft_list1 = list1
     pre_list2 = []
