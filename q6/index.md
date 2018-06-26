@@ -11,7 +11,6 @@ The only exception to this statement is that the *ratio* between price and BMI d
 
 <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css" type="text/css" />
-        
 
 <script src="../data/js/include_html.js"></script>
 <div html-file-url="../git/Mirka/slider.html"></div>
