@@ -48,7 +48,7 @@ def normalisation_gathering_food(food_data):
             for month in months:
                 food_by_cur_month = food_by_cur_year[food_by_cur_year["month"] == month]
                 food_by_cur_month_group = food_by_cur_month.groupby("cur_name")
-                placeholder = food_by_cur_month_group["standardized_prices"].mean().values
+                placeholder = food_by_cur_month_group["price"].mean().values
                 if len(placeholder) > 0:
                     list1.append(placeholder[0])
         dict_food[cur] = [max(list1), min(list1)]
@@ -105,9 +105,9 @@ def creating_graphs(data_food, data_currency, normal_cur_dict, normal_food_dict)
             data_of_food_year = data_of_food[data_of_food["year"] == year]
             for month in months:
                 data_of_food_month = data_of_food_year[data_of_food_year["month"] == month]
-                data_of_food_month = data_of_food_month[["cur_name", "standardized_prices"]]
+                data_of_food_month = data_of_food_month[["cur_name", "price"]]
                 data_of_food_month = data_of_food_month.groupby("cur_name")
-                placeholder = data_of_food_month["standardized_prices"].mean().values
+                placeholder = data_of_food_month["price"].mean().values
                 if len(placeholder) > 0:
                     data_food_all.append(placeholder[0])
                 else:
