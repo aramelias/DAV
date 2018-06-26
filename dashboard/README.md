@@ -1,2 +1,0 @@
-# DAV
-Hello world!
