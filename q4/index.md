@@ -1,5 +1,5 @@
-# Question 1
-*Are there any food prices that are show negative/positive correlation, and is this correlation present throughout the years, or perhaps only in certain period? Can you perhaps detect possible ingredients of a certain other food product?*
+# Question 4: Within a Country
+*Are there any correlations between the food prices in different regions within the same country?*
 
 <hr>
 

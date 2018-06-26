@@ -1,5 +1,5 @@
-# Question 1
-*Are there any food prices that are show negative/positive correlation, and is this correlation present throughout the years, or perhaps only in certain period? Can you perhaps detect possible ingredients of a certain other food product?*
+# Question 5: Currency
+*When the value of the dollar increases or decreases, does the same happen to the price of food items converted to dollars?*
 
 <hr>
 

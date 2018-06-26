@@ -1,5 +1,5 @@
-# Question 1
-*Are there any food prices that are show negative/positive correlation, and is this correlation present throughout the years, or perhaps only in certain period? Can you perhaps detect possible ingredients of a certain other food product?*
+# Question 6: Trends
+*Is there a correlation between geographical location of a country and its ratio between food price and BMI over time?*
 
 <hr>
 
