@@ -3,4 +3,4 @@ Hello world!
 
 <hr>
 
-<a href="../DAV/q1">Question 1</a>
+<a href="../q1">Question 1</a>
