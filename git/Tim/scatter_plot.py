@@ -36,6 +36,8 @@ import time
 import bokeh.plotting as plt
 import bokeh.models as bkm
 import bokeh.layouts as bkl
+from bokeh.resources import CDN
+from bokeh.embed import components
 import bokeh
 import datetime
 import random
@@ -185,7 +187,7 @@ REGION_NAME_2_COLOR = {
 
 def do_graph_animation (graph_product, title, path, progress_bar):
     # The total graph info
-    plt.output_file(path, mode="inline")
+    plt.output_file(path, mode="absolute", root_dir="/Users/Tim/UvA/DAV/data/")
 
     hover = bkm.HoverTool(tooltips=[("Country", "@names"), ("Region", "@region")])
 
@@ -418,9 +420,9 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output_path", help="The path of the resulting database")
     args = parser.parse_args()
 
-    input_path = "/Users/Tim/UvA/DAV/Ignored/foodprices2 unified better.csv"
-    input_path_bmi = "/Users/Tim/UvA/DAV/BMI-Data-Less.csv"
-    output_path = "/Users/Tim/UvA/DAV/Tim/Ignored/scatter_plots"
+    input_path = "/Users/Tim/UvA/DAV/git/Ignored/foodprices2 unified better.csv"
+    input_path_bmi = "/Users/Tim/UvA/DAV/git/BMI-Data-Less.csv"
+    output_path = "/Users/Tim/UvA/DAV/git/Tim/Ignored/scatter_plots"
     if args.input_path:
         input_path = args.input_path
     if args.input_path_bmi:

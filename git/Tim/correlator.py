@@ -20,6 +20,11 @@
 ## v1.0 (release):                                       ##
 ##   o Switches status to release                        ##
 ###########################################################
+## v1.1:                                                 ##
+##   - Fixed a bug that would not give all the countries ##
+##   - Doing so, removed function to only take matching  ##
+##     bits of graphs (found unnecessary)                ##
+###########################################################
 
 import argparse
 import pandas as pd
@@ -49,7 +54,7 @@ def main (input_path, pattern):
     # Welcome message
     print("\n################")
     print("## CORRELATOR ##")
-    print("##    v1.0    ##")
+    print("##    v1.1    ##")
     print("################\n")
 
     print("USING PATHS:")
@@ -66,7 +71,7 @@ def main (input_path, pattern):
     print("\033[K\033[F\033[K", end="")
     print("  - Computing correlation...")
     correlation_pairs = {}
-    progress_bar = ProgressBar(max_amount=total_tier2)
+    progress_bar = ProgressBar(preceding_text="   ", max_amount=total_tier2)
     for tier1 in resulting_graphs:
         if tier1 not in correlation_pairs:
             correlation_pairs[tier1] = []
@@ -78,22 +83,12 @@ def main (input_path, pattern):
                 # Make sure we only grab the common part
                 _, y_list_check = resulting_graphs[tier1][tier2_check]
 
-                old_y_list = list(y_list)
-                old_y_list_check = list(y_list_check)
-                y_list = []
-                y_list_check = []
-                for i in range(len(old_y_list)):
-                    if old_y_list[i] > 0 and old_y_list_check[i] > 0:
-                        y_list.append(old_y_list[i])
-                        y_list_check.append(old_y_list_check[i])
-
-                if len(y_list) > 0:
-                    # Save
-                    if len(y_list) == 1:
-                        corr = "Cannot compute correlation"
-                    else:
-                        corr = np.corrcoef(y_list, y_list_check)[1][0]
-                    correlation_pairs[tier1].append((str(tier2) + " VS " + str(tier2_check), corr))
+                # Save
+                if len(y_list) > 1:
+                    corr = np.corrcoef(y_list, y_list_check)[1][0]
+                else:
+                    corr = "---"
+                correlation_pairs[tier1].append((str(tier2) + " VS " + str(tier2_check), corr))
             progress_bar.update()
     print("Done")
     print("\n##### RESULT #####")
