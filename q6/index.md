@@ -23,7 +23,7 @@ The only exception to this statement is that the *ratio* between price and BMI d
     scrolling="no"
     seamless="seamless"
     style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);"
-    frameborder="1">
+    frameborder="0">
 </iframe>
 
 
