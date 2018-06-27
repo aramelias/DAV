@@ -3,4 +3,10 @@
 
 <hr>
 
+It can be concluded from the data that when the value of the local currency changes, the price of food in the area that uses said currency changes with it, displaying a positive correlation.
+
+However, the opposite is not true: for example, while the price of rice in Bangladesh strongly fluctuates, the value of its currency, the Taka (BDT), is not affected by this, while changes in the value of the Taka imply similar changes in the rice price.
+
+There are a few exceptions to this rule, in which case the food price and currency exchange rate do not show any particular correlation (eg. Armedian Dram (AMD) and Philippine Peso (PHP)), or only do so in limited time intervals (Burundian Franc (BIF)).
+
 <a href="/DAV/dashboard">Home</a>

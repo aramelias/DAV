@@ -9,6 +9,8 @@ There is also a clear connection between geographical location and BMI: countrie
 
 The only exception to this statement is that the *ratio* between price and BMI does not change in similar ways for countries within the same region.
 
+Another detail worth noting is that there are two outliers, which are located far outside the visible range of the plot below: one far to the right, and one far below the area that houses all the other values.
+
 <iframe src="/DAV/git/Mirka/Rice_vs_BMI_slider.html"
     sandbox="allow-same-origin allow-scripts"
     height="465"
