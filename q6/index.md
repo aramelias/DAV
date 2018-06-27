@@ -9,13 +9,6 @@ There is also a clear connection between geographical location and BMI: countrie
 
 The only exception to this statement is that the *ratio* between price and BMI does not change in similar ways for countries within the same region.
 
-<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css" type="text/css" />
-<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css" type="text/css" />
-
-<!-- <script src="/DAV/data/js/include_html.js"></script>
-<div style="height:100px" html-file-url="/DAV/git/Mirka/slider.html"></div>
-<script>include_html()</script> -->
-
 <iframe src="/DAV/git/Mirka/Rice_vs_BMI_slider.html"
     sandbox="allow-same-origin allow-scripts"
     height="465"
