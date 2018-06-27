@@ -3,4 +3,4 @@
 
 <hr>
 
-<a href="../dashboard">Home</a>
+<a href="/DAV/dashboard">Home</a>
