@@ -14,7 +14,7 @@ The only exception to this statement is that the *ratio* between price and BMI d
     height="465"
     width="100%"
     max-width="100%"
-    scrolling="no"
+    scrolling="yes"
     seamless="seamless"
     frameborder="0">
 </iframe>
