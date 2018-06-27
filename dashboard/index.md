@@ -5,7 +5,7 @@ Our group consists of Anne Boomsma, Aram Elias, Tim Müller and Mirka Schoute.
 <hr />
 
 ## Question 1: Time Correlations
-Are there any food prices that show a correlation, maybe within a certain time frame? Can you perhaps detect possible ingredients of a certain other food product in?
+Are there any food prices that show a correlation, maybe within a certain time frame? Can you perhaps detect possible ingredients of a certain other food product?
 
 <a href="/DAV/q1">Read More</a><br />
 
