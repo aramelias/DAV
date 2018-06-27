@@ -18,11 +18,9 @@ The only exception to this statement is that the *ratio* between price and BMI d
 
 <iframe src="/DAV/git/Mirka/slider.html"
     sandbox="allow-same-origin allow-scripts"
-    width="100%"
-    height="500"
-    scrolling="no"
+    scrolling="yes"
     seamless="seamless"
-    frameborder="0">
+    frameborder="1">
 </iframe>
 
 
