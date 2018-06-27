@@ -13,7 +13,7 @@ The only exception to this statement is that the *ratio* between price and BMI d
 <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css" type="text/css" />
 
 <script src="/DAV/data/js/include_html.js"></script>
-<div html-file-url="/DAV/git/Mirka/slider.html"></div>
+<div style="height:100px" html-file-url="/DAV/git/Mirka/slider.html"></div>
 <script>include_html()</script>
 
 <a href="/DAV/dashboard">Home</a>
