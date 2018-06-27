@@ -279,9 +279,9 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
     f.add_layout(legend, 'right')
 
-    layout = bokeh.layouts.row(
-        f,
-        bokeh.layouts.widgetbox(slider)
+    layout = bokeh.layouts.column(
+        bokeh.layouts.widgetbox(slider),
+        f
     )
     plt.save(layout)
 
@@ -298,6 +298,10 @@ def collect_graphs (db_prices, db_BMI):
     for row in db_prices.itertuples():
         product = row.product_name
         country = row.country_name
+
+        if country == "Syrian Arab Republic" or country == "Myanmar":
+            progress_bar.update()
+            continue
 
         if "rice" in product.lower():
             product = "Rice"
