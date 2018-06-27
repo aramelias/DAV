@@ -18,8 +18,7 @@ The only exception to this statement is that the *ratio* between price and BMI d
 
 <iframe src="/DAV/git/Mirka/Rice_vs_BMI_slider.html"
     sandbox="allow-same-origin allow-scripts"
-    width="750"
-    height="640"
+    height="320"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
