@@ -27,6 +27,10 @@
 #     of individual circles, as the origin for the  #
 #     legend problem was found...                   #
 #####################################################
+# v2.1:                                             #
+#   o Attempts made to export graphs as             #
+#     HTML-importable graphs, for the website       #
+#####################################################
 
 import argparse
 import pandas as pd
@@ -187,7 +191,7 @@ REGION_NAME_2_COLOR = {
 
 def do_graph_animation (graph_product, title, path, progress_bar):
     # The total graph info
-    plt.output_file(path, mode="absolute", root_dir="/Users/Tim/UvA/DAV/data/")
+    plt.output_file(path, mode="relative", root_dir="/Users/Tim/UvA/DAV/data/")
 
     hover = bkm.HoverTool(tooltips=[("Country", "@names"), ("Region", "@region")])
 
@@ -375,7 +379,7 @@ def main (input_path, input_path_bmi, output_path):
     # Do welcome
     print("\n##################")
     print("## SCATTER PLOT ##")
-    print("##     v2.0     ##")
+    print("##     v2.1     ##")
     print("##################\n")
 
     print("USING PATHS:")
