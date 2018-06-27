@@ -20,7 +20,7 @@ The only exception to this statement is that the *ratio* between price and BMI d
     sandbox="allow-same-origin allow-scripts"
     width="100%"
     height="500"
-    scrolling="yes"
+    scrolling="no"
     seamless="seamless"
     frameborder="1">
 </iframe>
