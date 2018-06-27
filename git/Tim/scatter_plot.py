@@ -191,7 +191,7 @@ REGION_NAME_2_COLOR = {
 
 def do_graph_animation (graph_product, title, path, progress_bar):
     # The total graph info
-    plt.output_file(path, mode="relative", root_dir="/Users/Tim/UvA/DAV/data/")
+    plt.output_file(path)
 
     hover = bkm.HoverTool(tooltips=[("Country", "@names"), ("Region", "@region")])
 
