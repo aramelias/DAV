@@ -16,7 +16,7 @@ The only exception to this statement is that the *ratio* between price and BMI d
 <div style="height:100px" html-file-url="/DAV/git/Mirka/slider.html"></div>
 <script>include_html()</script> -->
 
-<div style="margin:-250">
+<div style="margin-left:-250, margin-top:-320;margin-bottom:-320">
 <iframe src="/DAV/git/Mirka/Rice_vs_BMI_slider.html"
     sandbox="allow-same-origin allow-scripts"
     width="1500"
