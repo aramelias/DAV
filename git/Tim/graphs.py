@@ -221,20 +221,32 @@ def collect_graphs (db, mode, use_years):
         if mode == "products":
             first_order = row.product_name
             secnd_order = row.country_name
+            if tier2 == "Syrian Arab Republic" or tier2 == "Myanmar":
+                progress_bar.update()
+                continue
         elif mode == "countries":
             first_order = row.country_name
             secnd_order = row.product_name
+            if tier2 == "Syrian Arab Republic" or tier2 == "Myanmar":
+                progress_bar.update()
+                continue
         elif "regions" in mode:
             # Now create
             if mode == "regions":
                 tier1 = REGION_ID_2_NAME[COUNTRY_2_REGION[row.country_name]]
                 tier2 = row.country_name
+                if tier2 == "Syrian Arab Republic" or tier2 == "Myanmar":
+                    progress_bar.update()
+                    continue
             elif mode == "inner_regions":
                 tier1 = row.country_name
                 tier2 = row.region_name
                 if tier2 == 0:
                     tier2 == "NaN_{}".format(nan_counter)
                     nan_counter += 1
+                if tier2 == "Syrian Arab Republic" or tier2 == "Myanmar":
+                    progress_bar.update()
+                    continue
 
             # Quickly eliminate all rice things not rice
             if "rice" not in row.product_name.lower() or row.country_name == "Myanmar":
@@ -345,7 +357,7 @@ def do_graph (tier1, graphs, path, title):
         x_list, y_list = graphs[tier1][tier2]
         if not isinstance(tier2, str):
             tier2 = "NaN"
-        line_plotter.plot(x_list, y_list, tier2)
+        line_plotter.plot(x_list, y_list, tier2, use_roundels=use_years)
     # Save the graph instead
     line_plotter.flush()
 

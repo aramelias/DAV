@@ -47,6 +47,10 @@
 ##  o Small improvements, such as graph layout and final ##
 ##    bug fixes                                          ##
 ###########################################################
+## v1.1:                                                 ##
+##  + Added label 'product'                              ##
+##  - Fixed label bug                                    ##
+###########################################################
 
 import argparse
 import pandas as pd
@@ -141,7 +145,11 @@ def return_graph (title, graph_dataset, columns="price,bmi"):
     print("\r\033[K  - Creating figure...",end="")
 
     # Create hover tool
-    hover = bkm.HoverTool(tooltips=[("Country", "@names"), ("Region", "@regions")])
+    tooltips = [("Country", "@names"), ("Region", "@regions")]
+    if "products" in graph_dataset:
+        tooltips.append(("Product", "@products"))
+        products = graph_dataset["products"]
+    hover = bkm.HoverTool(tooltips=tooltips)
 
     # Create figure
     f = plt.figure(title=title, x_axis_label = columns[0], y_axis_label = columns[1], tools=[hover, bkm.WheelZoomTool(), bkm.BoxZoomTool(), bkm.PanTool(), bkm.SaveTool(), bkm.ResetTool()], width=900)
@@ -166,6 +174,8 @@ def return_graph (title, graph_dataset, columns="price,bmi"):
 
     print("\r\033[K  - Plotting...",end="")
     data = {columns[0]:x_list, columns[1]:y_list, "names":names, "regions":regions, "colors":colors}
+    if "products" in graph_dataset:
+        data["products"] = products
     source = bkm.ColumnDataSource(data=data)
     f.scatter(columns[0], columns[1], source=source, color="colors", muted_color="colors", muted_alpha=0.1, size=10)
 
@@ -198,7 +208,7 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
     # Welcoming message
     print("\n#################")
     print("##   K-MEANS   ##")
-    print("##    v 0.9    ##")
+    print("##    v 1.1    ##")
     print("#################\n")
 
     # Show the paths
@@ -286,17 +296,27 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
                 counter += 1
     # Add countries and regions
     all_data["names"] = db_price["country_name"]
+    all_data["products"] = db_price["product_name"]
     regions = []
     for country in all_data["names"]:
-        regions.append(scatter_plot.COUNTRY_2_REGION[country])
+        regions.append(scatter_plot.REGION_ID_2_NAME[scatter_plot.COUNTRY_2_REGION[country]])
     all_data["regions"] = regions
+
+    print("\n\nNames:")
+    print(all_data["names"])
+    print("Products:")
+    print(all_data["products"])
+    print("Regions:")
+    print(all_data["regions"])
 
     # Do a random permutation
     rndperm = np.random.permutation(all_data.shape[0])
     x = all_data.loc[rndperm[:permutation_size],:].copy()
+    x = x.reset_index()
     names = x["names"].copy()
     regions = x["regions"].copy()
-    x = x.drop(["names", "regions"], axis=1)
+    products = x["products"].copy()
+    x = x.drop(["names", "regions", "products"], axis=1)
 
     # Do K-Means and shit
     print("    (Total number of elements: {})".format(counter))
@@ -347,7 +367,7 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
 
     print("  - Using TSNE to reduce dimensions...")
     start = time.time()
-    x_embedded = TSNE(verbose=2).fit_transform(x.values)
+    x_embedded = TSNE(verbose=2, n_iter=1000).fit_transform(x.values)
     time_taken = time.time() - start
     with open(path_tsne, "w") as f:
         f.write(str(x_embedded))
@@ -359,6 +379,7 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
     y["t-SNE Y"] = x_embedded[:,1]
     y["regions"] = regions
     y["names"] = names
+    y["products"] = products
     y["colors"] = model.labels_
 
     print("Done")
@@ -388,8 +409,8 @@ if __name__ == "__main__":
     parser.add_argument("-c", "--colours", action="store_true", help="If given, the program will include the labels given by K-Means while reducing dimensions")
     args = parser.parse_args()
 
-    input_path = "/Users/Tim/UvA/DAV/Ignored/foodprices2 unified better.csv"
-    input_path_bmi = "/Users/Tim/UvA/DAV/BMI-Data-Less.csv"
+    input_path = "/Users/Tim/UvA/DAV/git/Ignored/foodprices2 unified better.csv"
+    input_path_bmi = "/Users/Tim/UvA/DAV/git/BMI-Data-Less.csv"
     permutation_size = 10000
     with_colours = False
     if args.input_path:
