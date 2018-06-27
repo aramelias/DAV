@@ -14,8 +14,6 @@ The only exception to this statement is that the *ratio* between price and BMI d
 
 <script src="/DAV/data/js/include_html.js"></script>
 <div html-file-url="/DAV/git/Mirka/slider.html"></div>
-
-<div html-file-url="/DAV/rickroll.html"></div>
 <script>include_html()</script>
 
 <a href="/DAV/dashboard">Home</a>
