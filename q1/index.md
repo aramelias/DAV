@@ -77,8 +77,6 @@ Ook in Sudan staan alle prijzen sterk in verband met elkaar. Net als in Senegal 
     frameborder="0">
 </iframe>
 
-South Sudan shows a similar correlation: from 2012 to 2015, all food prices remain relatively the same, but after this period they fluctuate every year.
-
 De voedselprijzen in Zuid-Sudan vertonen eveneens een sterke correlatie. Van 2012 tot 2015 blijven ze relatief gelijk, maar daarna variëren ze sterk per jaar.
 
 <iframe src="/DAV/git/Tim/Graphs/United Republic of Tanzania.html"
@@ -102,8 +100,6 @@ In Tanzania hebben maïs en rijst een correlatie van 0,9812.
     seamless="seamless"
     frameborder="0">
 </iframe>
-
-The price of red beans has a similarity of 0.9992 across all countries, meaning the price develops at an extremely similar rate all over the world.
 
 De prijs van rode bonen heeft een correlatie van 0,9992 in alle landen samen, wat betekent dat de prijs overal ongeveer dezelfde ontwikkelingen vertoont.
 
