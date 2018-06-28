@@ -1,11 +1,11 @@
-# Question 4: Inner Regions
-*Are there any correlations between the food prices in different regions within the same country?*
+# Vraag 4: Binnengebieden
+*Zijn er verbanden tussen voedselprijzen tussen regio's binnen hetzelfde land?*
 
 <hr>
 
-For rice, this correlation is visible in 35 out of the 74 countries in the database. Once again, the price of rice has been taken as the norm, being one of the only products that is almost universally available.
+Voor rijst is deze correlatie zichtbaar in 35 van de 74 landen in de database. Hier is dit gewas weer als norm genomen omdat het zo algemeen verkrijgbaar is.
 
-The strongest correlation can be found in Bangladesh, Cambodia, El Salvador, Niger, Senegal, the Ukraine and Tanzania. Their graphs can be found below.
+Het sterkste verband kan worden onderscheiden in Bangladesh, Cambodja, El Salvador, Niger, Senegal, Oekraïne en Tanzania. De grafieken van deze landen staan hieronder.
 
 <iframe src="/DAV/git/Tim/Graphs/inner_regions/Bangladesh.html"
     sandbox="allow-same-origin allow-scripts"

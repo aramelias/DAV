@@ -1,59 +1,59 @@
-# Introduction
+# Inleiding
 
 <img src="/DAV/docs/market.jpg" alt="Food market" width="100%">
 
-Welcome to the project page of Group 27 of Data Analysis and Visualization, or DAV for short. Here, our research and conclusions drawn from the Food Prices dataset as well as a few supplementary datasets are neatly displayed in the form of six question-and-answer pages.
+Welkom op de projectpagina van groep 27 van Data Analysis and Visualization, kortweg DAV. Hier worden onze resultaten getoond in de vorm van zes vraag-en-antwoordpagina's, met als afsluiting een klein aantal extra bevindingen.
 
-Our group consists of Anne Boomsma, Aram Elias, Tim Müller and Mirka Schoute.
+De groep bestaat uit Anne Boomsma, Aram Elias, Tim Müller en Mirka Schoute.
 
-In this project, we analyzed the dataset of the prices of various food products over the past two decades in more than 70 countries all over the world. In addition, we added a similar dataset of the average BMI in each country to the mix to see if there were any connections.
-
-<hr />
-
-## Question 1: Time Correlations
-Are there any food prices that show a correlation, maybe within a certain time frame? Can you perhaps detect possible ingredients of a certain other food product?
-
-<a href="/DAV/q1">Read More</a><br />
+Bij dit project werd de dataset van voedselprijzen in meer dan 70 landen over de hele wereld in de afgelopen twee decennia geanalyseerd. Daarbij werd een soortgelijke dataset van de gemiddelde BMI (Body Mass Index) betrokken om te zien of er een duidelijk verband was.
 
 <hr />
 
-## Question 2: Spatial Correlations
-Do countries in similar regions, also show similar price differences?
+## Vraag 1: Verbanden in de tijd
+Zijn er voedselprijzen die een correlatie vertonen, misschien slechts binnen een bepaalde periode? Kunnen ingrediënten van andere voedselproducten worden opgemerkt?
 
-<a href="/DAV/q2">Read More</a><br />
-
-<hr />
-
-## Question 3: Price and BMI
-Can we see any correlations between the BMI and food prices of countries?  
-
-<a href="/DAV/q3">Read More</a><br />
+<a href="/DAV/q1">Antwoord</a><br />
 
 <hr />
 
-## Question 4: Inner Regions
-Is there a correlation between food prices in the same province/state in a country?
+## Vraag 2: Verbanden in de ruimte
+Tonen landen in dezelfde gebieden ook vergelijkbare prijsverschillen?
 
-<a href="/DAV/q4">Read More</a><br />
-
-<hr />
-
-## Question 5: Currency
-If the exchange rate to the dollar fluctuates, do the food prices follow?
-
-<a href="/DAV/q5">Read More</a><br />
+<a href="/DAV/q2">Antwoord</a><br />
 
 <hr />
 
-## Question 6: Trends
-Is there a correlation between geographic location and the BMI to food prices ratio?
+## Vraag 3: Prijs en BMI
+Zijn er zichtbare verbanden tussen de gemiddelde BMI en voedselprijs in landen?
 
-<a href="/DAV/q6">Read More</a><br />
+<a href="/DAV/q3">Antwoord</a><br />
 
 <hr />
 
-## Other Findings
+## Vraag 4: Binnengebieden
+Is er een verband tussen de voedselprijzen in verschillende regio's binnen een land?
+
+<a href="/DAV/q4">Antwoord</a><br />
+
+<hr />
+
+## Vraag 5: Valuta
+Wanneer de waarde van de plaatselijke munteenheid verandert, verandert de voedselprijs dan ook?
+
+<a href="/DAV/q5">Antwoord</a><br />
+
+<hr />
+
+## Vraag 6: Trends
+Is er een verband tussen geografische locatie en de verhouding tussen de gemiddelde BMI en voedselprijs?
+<a href="/DAV/q6">Antwoord</a><br />
+
+<hr />
+
+## Andere bevindingen
 While analyzing the data, our group also made a few interesting discoveries.
-* Due to a heavy monsoon in the Khulna region in Bangladesh in 2008, the price of most food products (including rice) was temporarily much higher than it was in the other parts of the country.
-* There has been an incredible rise in food prices in Syria since 2011, most likely due to its civil war and violent conflicts cutting off access to food in many areas, an issue that has since been worked on. Due to these extreme numbers compared to those of the surrounding countries, Syria’s statistics are considered an outlier and have been removed to provide a more accurate picture of the rest of the world. A similar development took place in South Sudan in 2016 after a coup, but this didn’t affect the statistics as much and was therefore not removed.
-* Last but not least, the large increase in food prices in Tanzania in 2012-2013 can be attributed to the heavy drought affecting the area in that period, at the end of which the food prices immediately began to drop back to normal.
+Bij het analyseren van de data deed onze groep een aantal interessante ontdekkingen.
+* In vooral de rijstprijs maar ook in de prijzen van andere producten in Bangladesh zijn erg sterke pieken en dalen te vinden, zo eens in de twee jaar. Eerst hadden we weinig verklaring voor ze, maar uiteindelijk bleek dat ze precies tegelijk vielen met zware edities van El Niño en La Niña. Beide zijn periodieke weersverschijnselen, die de natuurlijke balans enorm kunnen verstoren. In 2007/2008 en 2010/2011 waren er extreem zware La Niña’s, en in 2015/2016 extreem zware El Niño’s. Het zou dus erg goed kunnen dat deze pieken en dalen in Bangladesh door deze weersverschijnselen werden veroorzaakt, zeker omdat Bangladesh precies in het beïnvloede gebied ligt. Deze droogtes zorgen voor een slechte rijstoogst, wat dus voor een stijging in de prijs zorgt.
+* Sinds 2011 zijn de voedselprijzen in Syrië zeer sterk gestegen, waarschijnlijk vanwege de burgeroorlog die sinds dat jaar het land in rep en roer heeft gebracht. Omdat de waarden van dit land zo sterk afwijken van het gemiddelde, is besloten Syrië als een *outlier* te beschouwen en het uit onze beschouwing van de andere landen te laten.
+* Tenslotte kan de plotselinge stijging in voedselprijzen in Tanzania in 2012-2013 worden toegeschreven aan de extreme droogte die het gebied teisterde. Meteen na het einde van deze droogte zijn de prijzen immers teruggedaald naar een normaal niveau.

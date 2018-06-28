@@ -1,11 +1,11 @@
-# Question 5: Currency
-*When the exchange rate of the local currency to the dollar increases or decreases, does the same happen to the price of food items converted to dollars?*
+# Vraag 5: Valuta
+*Als de waarde van de plaatselijke valuta vergeleken met de dollar omhoog/omlaag gaat, gebeurt dat dan ook met de voedselprijs, hier de rijstprijs, in dollars?*
 
 <hr>
 
-It can be concluded from the data that when the value of the local currency changes, the price of food in the area that uses said currency changes with it, displaying a positive correlation.
+Uit de data blijkt dat voor de meeste valuta's geldt dat wanneer de lokale valuta van waarde verandert, de voedselprijs meeverandert in het gebied dat deze valuta gebruikt. Dit gebeurt met een positieve correlatie.
 
-However, the opposite is not true: for example, while the price of rice in Bangladesh strongly fluctuates, the value of its currency, the Taka (BDT), is not affected by this, while changes in the value of the Taka *do* imply similar changes in the rice price.
+Daarentegen is het tegenovergestelde niet waar: bijvoorbeeld in Bangladesh, daar verandert de rijstprijs sterk terwijl de waarde van de valuta, de Taka (BDT), daardoor niet wordt beïnvloed. Daarentegen impliceert een verandering in de waarde van de Taka *wel* een soortgelijke verandering in de rijstprijs.
 
 <iframe src="/DAV/git/Mirka/rice vs valuta/currency2:_BDT_development2.html"
     sandbox="allow-same-origin allow-scripts"
@@ -18,7 +18,7 @@ However, the opposite is not true: for example, while the price of rice in Bangl
     frameborder="0">
 </iframe>
 
-There are a few exceptions to this rule, in which case the food price and currency exchange rate do not show any particular correlation (eg. Armedian Dram (AMD)) or a *negative* one (Philippine Peso (PHP)), or only do so in limited time intervals (Burundian Franc (BIF)).
+Er zijn een paar uitzonderingen op deze regel, waarbij de voedselprijs en muntwaarde geen correlatie vertonen (bijv. de Armedische Dram (AMD)) of zelfs een *negatieve* correlatie vertonen (Filipijnse peso (PHP)), of alleen een verband vertonen in bepaalde tijdsperiodes (Burundische Franc (BIF)).
 
 <iframe src="/DAV/git/Mirka/rice vs valuta/currency2:_AMD_development2.html"
     sandbox="allow-same-origin allow-scripts"

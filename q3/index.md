@@ -1,5 +1,5 @@
 # Question 3: Price and BMI
-*Can we see any correlations between the average BMI per country per year and the food price data?*
+*Kunnen we correlaties vinden tussen de gemiddelde BMI van een land en de gemiddelde prijs van rijst in dat land?*
 
 <hr>
 
@@ -13,8 +13,8 @@
     frameborder="0">
 </iframe>
 
-Judging by the linear regression producing an uphill line for both BMI and food price, there is a clear positive correlation between the two.
+Zoals te zien is aan het resultaat van *linear regression* op de ontwikkelingen van zowel voedselprijs als gemiddelde BMI in alle landen, vertonen beide statistieken een stijgende trend en dus een positieve correlatie.
 
-It is possible that this is caused by the increasing wealth in all countries, making for a larger available amount and higher quality of food products as well as greater food consumption at the same time, which causes both the food price and BMI to increase.
+Het is mogelijk dat dit komt door de toenemende welvaart in de hele wereld, die zorgt voor een hogere voedselkwaliteit en voedselconsumptie. Daardoor stijgen zowel de voedselprijs als de gemiddelde BMI.
 
 <a href="/DAV/dashboard">Home</a>

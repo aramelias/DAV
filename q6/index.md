@@ -1,15 +1,13 @@
-# Question 6: Trends
-*Is there a correlation between geographical location of a country and its ratio between food price and BMI over time?*
+# Vraag 6: Trends
+*Is er een relatie te zien tussen enerzijds geografische ligging van een land en anderzijds de verhouding tussen BMI en voedselprijs, door de tijd heen?*
 
 <hr>
 
-The answer is yes; both the average BMI and food price (in this case, the price of rice in all its forms) increase at similar rates in any given location. In addition, a larger difference between lowest and highest value of one statistic within a region almost always means a larger difference in the other.
+Het antwoord hierop is ja; zowel de gemiddelde BMI en de voedselprijs zijn in de afgelopen jaren op vergelijkbare wijze gestegen. Daarbij komt ook nog dat een grotere verandering van een van deze statistieken binnen de regio bijna altijd een soortgelijke verandering betekent van de andere statistiek.
 
-There is also a clear connection between geographical location and BMI: countries within the same region tend to have a similar average BMI.
+Bovendien is er een sterk verband tussen geografische locatie en de verhouding tussen gemiddelde BMI en voedselprijs binnen een land: landen binnen dezelfde regio blijven dichtbij elkaar liggen in de *scatter-plot* en bewegen met elkaar mee.
 
-The only exception to this statement is that the *ratio* between price and BMI does not change in similar ways for countries within the same region.
-
-Another detail worth noting is that there is one outlier far below the displayed range that shows every other country in the world. Syria, which was omitted from our measurements, would have been an outlier along the horizontal axis.
+Een laatste detail dat nog op te merken valt is dat er een enkele *outlier* is die ver onder het vertoonde gebied ligt. Syrië, dat uit deze metingen is weggelaten, zou ook een *outlier* zijn, maar dit land zou ver rechts van de andere waarden liggen.
 
 <iframe src="/DAV/git/Tim/Graphs/Rice.html"
     sandbox="allow-same-origin allow-scripts"
