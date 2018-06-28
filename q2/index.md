@@ -1,4 +1,4 @@
-# Vraag 2: Verbanden in de ruimte
+# Vraag 2: Gebieden
 *Laten landen in dezelfde regio ook soortgelijke prijsstijgingen en -dalingen zien? Zo nee, is daar een mogelijke verklaring voor te vinden?*
 
 <hr>
