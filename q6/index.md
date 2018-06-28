@@ -13,7 +13,7 @@ Another detail worth noting is that there are two outliers, which are located fa
 
 <iframe src="/DAV/git/Tim/Graphs/Rice.html"
     sandbox="allow-same-origin allow-scripts"
-    height="550"
+    height="600"
     width="100%"
     max-width="100%"
     scrolling="yes"
