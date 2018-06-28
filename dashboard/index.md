@@ -47,6 +47,7 @@ Wanneer de waarde van de plaatselijke munteenheid verandert, verandert de voedse
 
 ## Vraag 6: Trends
 Is er een verband tussen geografische locatie en de verhouding tussen de gemiddelde BMI en voedselprijs?
+
 <a href="/DAV/q6">Antwoord</a><br />
 
 <hr />
