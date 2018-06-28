@@ -1,5 +1,5 @@
 # Vraag 3: Prijs en BMI
-*Kunnen we correlaties vinden tussen de gemiddelde BMI van een land en de gemiddelde prijs van rijst in dat land?*
+*Kunnen er correlaties worden gevonden tussen de gemiddelde BMI van een land en de gemiddelde prijs van rijst in dat land?*
 
 <hr>
 <a href="/DAV/q2">Vorige</a> | <a href="/DAV/dashboard">Home</a> | <a href="/DAV/q4">Volgende</a>
