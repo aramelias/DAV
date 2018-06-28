@@ -267,8 +267,8 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
     legend = bokeh.models.Legend(items=legend_list, location=(0,0), click_policy="mute")
 
-    f.x_range = bkm.DataRange1d(start=-0.5, end=3)
-    f.y_range = bkm.DataRange1d(start=18, end=30)
+    f.x_range = bkm.DataRange1d(start=0, end=3.6)
+    f.y_range = bkm.DataRange1d(start=19, end=32)
 
     # Make the slider
     callback = bokeh.models.CustomJS(args=dict(sources=sources, all_data=country_data), code=callback_code)
