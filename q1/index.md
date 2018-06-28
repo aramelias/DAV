@@ -8,7 +8,7 @@ Nine countries show a correlation between the prices of different kinds of food.
 <iframe src="/DAV/git/Tim/Graphs/Benin.html"
     sandbox="allow-same-origin allow-scripts"
     height="630"
-    width="110%"
+    width="105%"
     max-width="100%"
     scrolling="yes"
     seamless="seamless"
