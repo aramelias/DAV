@@ -1,4 +1,4 @@
-# Question 3: Price and BMI
+# Vraag 3: Prijs en BMI
 *Kunnen we correlaties vinden tussen de gemiddelde BMI van een land en de gemiddelde prijs van rijst in dat land?*
 
 <hr>
