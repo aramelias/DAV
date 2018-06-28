@@ -186,7 +186,7 @@ def return_graph (title, graph_dataset, columns="price,bmi"):
     print("\r\033[K  - Done")
     return f
 
-def display_graphs (*graph_datas, graphs=[], columns="price,bmi", path="pricevsbmi.html"):
+def display_graphs (*graph_datas, graphs=[], columns="price,bmi", path="git/Tim/pricevsbmi.html"):
     # Assemble all the graphs
     fs = []
     if len(graphs) < 1:
@@ -302,13 +302,6 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
         regions.append(scatter_plot.REGION_ID_2_NAME[scatter_plot.COUNTRY_2_REGION[country]])
     all_data["regions"] = regions
 
-    print("\n\nNames:")
-    print(all_data["names"])
-    print("Products:")
-    print(all_data["products"])
-    print("Regions:")
-    print(all_data["regions"])
-
     # Do a random permutation
     rndperm = np.random.permutation(all_data.shape[0])
     x = all_data.loc[rndperm[:permutation_size],:].copy()
@@ -321,7 +314,7 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
     # Do K-Means and shit
     print("    (Total number of elements: {})".format(counter))
     print("  - Doing K-Means...")
-    path_clusters = "clusters.txt"
+    path_clusters = "git/Tim/clusters.txt"
     if file_exists(path_clusters):
         print("    - Loading perfect cluster amount...")
         with open(path_clusters, "r") as f:
@@ -356,8 +349,8 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
     model = KMeans(n_clusters = n_clusters)
     model.fit(x)
 
-    path_kmeans = "kmeans_result.txt"
-    path_tsne = "tsne_result.txt"
+    path_kmeans = "git/Tim/kmeans_result.txt"
+    path_tsne = "git/Tim/tsne_result.txt"
     with open(path_kmeans, "w") as f:
         f.write(str(model.labels_))
 
@@ -384,7 +377,7 @@ def main (input_path, input_path_bmi, permutation_size, with_colors):
 
     print("Done")
 
-    path_html = "t_sne_"
+    path_html = "git/Tim/t_sne_"
     i = 0
     while file_exists(path_html + str(i) + ".html"):
         i += 1
