@@ -10,9 +10,11 @@ Nine countries show a correlation between the prices of different kinds of food.
 In Benin, all food prices rise from 2006 to 2008. When the prices of rice and beans increases, the prices of corn and sorghum decrease.
 
 <!-- Nepal graph -->
+
 In Nepal, the prices of rice and wheat have a high correlation of 0.9982. Both stop increasing in 2004, then follow a nearly parallel path all the way up until 2008.
 
 <!-- Niger graph -->
+
 In Niger, the prices of corn, sorghum and millet strongly correlate, but that of beans does not follow the same development. Peaks can also be seen in 1999 and 2001, after which the price remains relatively high.
 
 <!-- Senegal graph -->
