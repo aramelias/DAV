@@ -39,7 +39,7 @@ Is er een verband tussen de voedselprijzen in verschillende regio's binnen een l
 <hr />
 
 ## Vraag 5: Valuta
-Wanneer de waarde van de plaatselijke munteenheid verandert, verandert de voedselprijs dan ook?
+Wanneer de waarde van de plaatselijke valuta verandert, verandert de voedselprijs dan ook?
 
 <a href="/DAV/q5">Antwoord</a><br />
 
