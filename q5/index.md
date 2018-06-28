@@ -18,7 +18,7 @@ However, the opposite is not true: for example, while the price of rice in Bangl
     frameborder="0">
 </iframe>
 
-There are a few exceptions to this rule, in which case the food price and currency exchange rate do not show any particular correlation (eg. Armedian Dram (AMD) and Philippine Peso (PHP)), or only do so in limited time intervals (Burundian Franc (BIF)).
+There are a few exceptions to this rule, in which case the food price and currency exchange rate do not show any particular correlation (eg. Armedian Dram (AMD)) or a *negative* one (Philippine Peso (PHP)), or only do so in limited time intervals (Burundian Franc (BIF)).
 
 <iframe src="/DAV/git/Mirka/rice vs valuta/currency2:_AMD_development2.html"
     sandbox="allow-same-origin allow-scripts"
