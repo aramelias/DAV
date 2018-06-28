@@ -14,7 +14,7 @@ Another detail worth noting is that there is one outlier far below the displayed
 <iframe src="/DAV/git/Tim/Graphs/Rice.html"
     sandbox="allow-same-origin allow-scripts"
     height="700"
-    width="100%"
+    width="110%"
     max-width="100%"
     scrolling="yes"
     seamless="seamless"

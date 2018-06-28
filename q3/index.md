@@ -6,7 +6,7 @@
 <iframe src="/DAV/git/lineair_regression.html"
     sandbox="allow-same-origin allow-scripts"
     height="1230"
-    width="100%"
+    width="110%"
     max-width="100%"
     scrolling="yes"
     seamless="seamless"
