@@ -31,13 +31,19 @@ Of course, there are also developments that can be seen in multiple countries wi
 
 A few exceptions of this are as follows:
 
-<!-- Haiti graph -->
+As visible in the graph for Western Africa, Nigeria showed a far higher rice price compared to the rest of Western Africa up until 2015: $3 compared to the $1 average.
 
-Haiti shows a far higher price than not only the rest of the Caribbean region, but the rest of the islands across the world as well.
+<iframe src="/DAV/git/Tim/Graphs/Eilanden.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
-<!-- Nigeria graph -->
 
-Up until 2015, Nigeria also showed a far higher rice price compared to the rest of Western Africa: $3 compared to the $1 average.
-
+In addition, Haiti shows a far higher price than not only the rest of the Caribbean region, but the rest of the islands across the world as well.
 
 <a href="/DAV/dashboard">Home</a>
