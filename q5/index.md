@@ -9,7 +9,7 @@ However, the opposite is not true: for example, while the price of rice in Bangl
 
 <iframe src="/DAV/git/Mirka/rice vs valuta/currency2:_BDT_development2.html"
     sandbox="allow-same-origin allow-scripts"
-    height="630"
+    height="640"
     width="120%"
     max-width="100%"
     scrolling="yes"
