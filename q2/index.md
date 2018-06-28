@@ -21,7 +21,7 @@ Of course, there are also developments that can be seen in multiple countries wi
 
 <iframe src="/DAV/git/Tim/Graphs/West Afrika.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
