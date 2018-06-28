@@ -1,4 +1,7 @@
 # Introduction
+
+<img src="/DAV/docs/market.jpg" alt="Food market" width="100%">
+
 Welcome to the project page of Group 27 of Data Analysis and Visualization, or DAV for short. Here, our research and conclusions drawn from the Food Prices dataset as well as a few supplementary datasets are neatly displayed in the form of six question-and-answer pages.
 
 Our group consists of Anne Boomsma, Aram Elias, Tim Müller and Mirka Schoute.
