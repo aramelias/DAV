@@ -7,7 +7,7 @@ Nine countries show a correlation between the prices of different kinds of food.
 
 <iframe src="/DAV/git/Tim/Graphs/Benin.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
@@ -19,7 +19,7 @@ In Benin, all food prices rise from 2006 to 2008. When the prices of rice and be
 
 <iframe src="/DAV/git/Tim/Graphs/Nepal.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
@@ -31,7 +31,7 @@ In Nepal, the prices of rice and wheat have a high correlation of 0.9982. Both s
 
 <iframe src="/DAV/git/Tim/Graphs/Niger.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
@@ -43,7 +43,7 @@ In Niger, the prices of corn, sorghum and millet strongly correlate, but that of
 
 <iframe src="/DAV/git/Tim/Graphs/Senegal.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
@@ -55,7 +55,7 @@ The food prices in Senegal all correlate strongly. Sorghum and millet, both bein
 
 <iframe src="/DAV/git/Tim/Graphs/Sudan.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
@@ -67,7 +67,7 @@ In Sudan, the prices of almost all products show a strong correlation. Like in S
 
 <iframe src="/DAV/git/Tim/Graphs/South Sudan.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
@@ -79,7 +79,7 @@ South Sudan shows a similar correlation: from 2012 to 2015, all food prices rema
 
 <iframe src="/DAV/git/Tim/Graphs/United Republic of Tanzania.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
