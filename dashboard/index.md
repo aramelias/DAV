@@ -52,6 +52,6 @@ Is er een verband tussen geografische locatie en de verhouding tussen de gemidde
 
 <hr />
 
-<a href="/DAV/findings">
 ## Overige bevindingen
-</a>
+
+Deze bevinden zich <a href="/DAV/findings">hier</a>.
