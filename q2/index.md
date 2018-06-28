@@ -2,6 +2,8 @@
 *Laten landen in dezelfde regio ook soortgelijke prijsstijgingen en -dalingen zien? Zo nee, is daar een mogelijke verklaring voor te vinden?*
 
 <hr>
+<a href="/DAV/q3">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<hr>
 
 Over het algemeen blijken landen die zich in dezelfde regio bevinden, vergelijkbare ontwikkelingen in de voedselprijzen te vertonen. Bovendien komen de meeste trends in de prijs van rijst -- een bijna overal beschikbaar gewas -- in meerdere regio's voor.
 
@@ -45,4 +47,5 @@ Zoals kan worden onderscheiden in de grafiek voor West-Afrika was de rijstprijs 
 
 Tenslotte is de rijstprijs in Haïti veel hoger dan die op alle andere eilanden zowel binnen en buiten het Caribische gebied.
 
-<a href="/DAV/dashboard">Home</a>
+<hr>
+<a href="/DAV/q3">Volgende</a> | <a href="/DAV/dashboard">Home</a>

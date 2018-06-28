@@ -2,6 +2,8 @@
 *Zijn er verbanden tussen voedselprijzen tussen regio's binnen hetzelfde land?*
 
 <hr>
+<a href="/DAV/q5">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<hr>
 
 Voor rijst is deze correlatie zichtbaar in 35 van de 74 landen in de database. Hier is dit gewas weer als norm genomen omdat het zo algemeen verkrijgbaar is.
 
@@ -71,4 +73,5 @@ Het sterkste verband kan worden onderscheiden in Bangladesh, Cambodja, El Salvad
     frameborder="0">
 </iframe>
 
-<a href="/DAV/dashboard">Home</a>
+<hr>
+<a href="/DAV/q5">Volgende</a> | <a href="/DAV/dashboard">Home</a>

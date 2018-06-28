@@ -2,6 +2,8 @@
 *Als de waarde van de plaatselijke valuta vergeleken met de dollar omhoog/omlaag gaat, gebeurt dat dan ook met de voedselprijs, hier de rijstprijs, in dollars?*
 
 <hr>
+<a href="/DAV/q6">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<hr>
 
 Uit de data blijkt dat voor de meeste valuta's geldt dat wanneer de lokale valuta van waarde verandert, de voedselprijs meeverandert in het gebied dat deze valuta gebruikt. Dit gebeurt met een positieve correlatie.
 
@@ -51,4 +53,5 @@ Er zijn een paar uitzonderingen op deze regel, waarbij de voedselprijs en muntwa
     frameborder="0">
 </iframe>
 
-<a href="/DAV/dashboard">Home</a>
+<hr>
+<a href="/DAV/q6">Volgende</a> | <a href="/DAV/dashboard">Home</a>
