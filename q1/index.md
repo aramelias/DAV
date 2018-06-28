@@ -5,31 +5,87 @@
 
 Nine countries show a correlation between the prices of different kinds of food. In addition, the following developments have been distinguished:
 
-<!-- Benin graph -->
+<iframe src="/DAV/git/Tim/Graphs/Benin.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 In Benin, all food prices rise from 2006 to 2008. When the prices of rice and beans increases, the prices of corn and sorghum decrease.
 
-<!-- Nepal graph -->
+<iframe src="/DAV/git/Tim/Graphs/Nepal.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 In Nepal, the prices of rice and wheat have a high correlation of 0.9982. Both stop increasing in 2004, then follow a nearly parallel path all the way up until 2008.
 
-<!-- Niger graph -->
+<iframe src="/DAV/git/Tim/Graphs/Niger.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 In Niger, the prices of corn, sorghum and millet strongly correlate, but that of beans does not follow the same development. Peaks can also be seen in 1999 and 2001, after which the price remains relatively high.
 
-<!-- Senegal graph -->
+<iframe src="/DAV/git/Tim/Graphs/Senegal.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 The food prices in Senegal all correlate strongly. Sorghum and millet, both being types of wheat, have a correlation of 0.9969. Additionally, all prices show a peak increase in 2004 immediately followed by a decline in the next year.
 
-<!-- Sudan graph -->
+<iframe src="/DAV/git/Tim/Graphs/Sudan.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 In Sudan, the prices of almost all products show a strong correlation. Like in Senegal and Niger, sorghum and millet have a high correlation: 0.9956.
 
-<!-- South Sudan graph -->
+<iframe src="/DAV/git/Tim/Graphs/South Sudan.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 South Sudan shows a similar correlation: from 2012 to 2015, all food prices remain relatively the same, but after this period they fluctuate every year.
 
-<!-- Tanzania graph -->
+<iframe src="/DAV/git/Tim/Graphs/United Republic of Tanzania.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 In Tanzania, corn and rice have a correlation of 0,9812.
 
