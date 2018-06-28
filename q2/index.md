@@ -3,7 +3,7 @@
 
 <hr>
 
-Over het algemeen blijken landen die zich in dezelfde regio bevinden, vergelijkbare ontwikkelingen in de voedselprijzen te vertonen. Bovendien komen de meeste trends in the prijs van rijst -- een bijna overal beschikbaar gewas -- in meerdere regio's voor.
+Over het algemeen blijken landen die zich in dezelfde regio bevinden, vergelijkbare ontwikkelingen in de voedselprijzen te vertonen. Bovendien komen de meeste trends in de prijs van rijst -- een bijna overal beschikbaar gewas -- in meerdere regio's voor.
 
 <iframe src="/DAV/git/Tim/Graphs/region_overview.html"
     sandbox="allow-same-origin allow-scripts"
