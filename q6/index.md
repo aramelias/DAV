@@ -9,7 +9,7 @@ There is also a clear connection between geographical location and BMI: countrie
 
 The only exception to this statement is that the *ratio* between price and BMI does not change in similar ways for countries within the same region.
 
-Another detail worth noting is that there are two outliers, which are located far outside the visible range of the plot below: one far to the right, and one far below the area that houses all the other values.
+Another detail worth noting is that there is one outlier far below the displayed range that can display every other country in the world. Syria, which was omitted from our measurements, would have been an outlier along the horizontal axis.
 
 <iframe src="/DAV/git/Tim/Graphs/Rice.html"
     sandbox="allow-same-origin allow-scripts"
