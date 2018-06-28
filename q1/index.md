@@ -15,7 +15,7 @@ Nine countries show a correlation between the prices of different kinds of food.
     frameborder="0">
 </iframe>
 
-In Benin, all food prices rise from 2006 to 2008. When the prices of rice and beans increases, the prices of corn and sorghum decrease.
+In Benin, all food prices rise from 2006 to 2008. When the prices of rice and beans increases, the prices of maize and sorghum decrease.
 
 <iframe src="/DAV/git/Tim/Graphs/Nepal.html"
     sandbox="allow-same-origin allow-scripts"
@@ -39,7 +39,7 @@ In Nepal, the prices of rice and wheat have a high correlation of 0.9982. Both s
     frameborder="0">
 </iframe>
 
-In Niger, the prices of corn, sorghum and millet strongly correlate, but that of beans does not follow the same development. Peaks can also be seen in 1999 and 2001, after which the price remains relatively high.
+In Niger, the prices of maize, sorghum and millet strongly correlate, but that of beans does not follow the same development. Peaks can also be seen in 1999 and 2001, after which the price remains relatively high.
 
 <iframe src="/DAV/git/Tim/Graphs/Senegal.html"
     sandbox="allow-same-origin allow-scripts"
@@ -87,7 +87,7 @@ South Sudan shows a similar correlation: from 2012 to 2015, all food prices rema
     frameborder="0">
 </iframe>
 
-In Tanzania, corn and rice have a correlation of 0,9812.
+In Tanzania, maize and rice have a correlation of 0,9812.
 
 <!-- Red beans graph -->
 
@@ -95,6 +95,6 @@ The price of red beans has a similarity of 0.9992 across all countries, meaning 
 
 <!-- Graphs: wheat AND bread -->
 
-Counterintuitive as it may seem, the price of bread does not show a particularly strong correlation with that of wheat in any country. The price of wheat increases over the years, while that of bread stays relatively the same, increasing and decreasing at different moments compared to the price of its main ingredient.
+Counterintuitive as it may seem, the price of bread does not show a particularly strong correlation with that of wheat in any country. The price of wheat increases over the years, while that of bread stays relatively the same, only increasing and decreasing at different moments compared to the price of its main ingredient.
 
 <a href="/DAV/dashboard">Home</a>
