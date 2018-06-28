@@ -43,3 +43,8 @@ If the exchange rate to the dollar fluctuates, do the food prices follow?
 Is there a correlation between geographic location and the BMI to food prices ratio?
 
 <a href="/DAV/q6">Read More</a><br />
+
+<hr />
+
+## Other Findings
+While analyzing the data, our group also made a few interesting discoveries.
