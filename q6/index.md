@@ -11,7 +11,7 @@ The only exception to this statement is that the *ratio* between price and BMI d
 
 Another detail worth noting is that there are two outliers, which are located far outside the visible range of the plot below: one far to the right, and one far below the area that houses all the other values.
 
-<iframe src="/DAV/git/Mirka/Rice_vs_BMI_slider.html"
+<iframe src="/DAV/git/Tim/Graphs/Rice.html"
     sandbox="allow-same-origin allow-scripts"
     height="465"
     width="100%"
