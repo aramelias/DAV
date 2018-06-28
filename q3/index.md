@@ -5,7 +5,7 @@
 
 <iframe src="/DAV/git/lineair_regression.html"
     sandbox="allow-same-origin allow-scripts"
-    height="1220"
+    height="1230"
     width="100%"
     max-width="100%"
     scrolling="yes"
