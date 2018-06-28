@@ -12,6 +12,7 @@ However, the opposite is not true: for example, while the price of rice in Bangl
     height="660"
     width="130%"
     max-width="100%"
+    style="left:-15%"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
