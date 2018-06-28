@@ -23,7 +23,7 @@ The food prices in Senegal all correlate strongly. Sorghum and millet, both bein
 
 <!-- Sudan graph -->
 
-In Sudan, the prices of almost all products show a strong correlation. Like in Senegal and Niger, sorghum and millet have a high corellation: 0.9956.
+In Sudan, the prices of almost all products show a strong correlation. Like in Senegal and Niger, sorghum and millet have a high correlation: 0.9956.
 
 <!-- South Sudan graph -->
 
