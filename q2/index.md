@@ -19,11 +19,7 @@ One example of this is the peak in 2009-2010, which can be seen in all regions. 
 
 Of course, there are also developments that can be seen in multiple countries within the same region, but not anywhere or everywhere else. For example, Western Africa as a whole shows a peak in the price of rice in 2003 that can hardly be detected in other areas.
 
-A few exceptions of this include:
-
-<!-- Syria graph -->
-
-Syrian Arab Republic shows extremely high food prices, even increasing to around $100 per kilogram in 2015 compared to the $1.54 price in Albert Heijn. For this reason, the country has been considered an outlier and has not been included in the overview at the beginning of this page.
+A few exceptions of this are as follows:
 
 <!-- Haiti graph -->
 
