@@ -23,7 +23,7 @@ A few exceptions of this are as follows:
 
 <!-- Haiti graph -->
 
-Haiti also shows a far higher price than not only the rest of the Caribbean region, but the rest of the islands across the world as well.
+Haiti shows a far higher price than not only the rest of the Caribbean region, but the rest of the islands across the world as well.
 
 <!-- Nigeria graph -->
 
