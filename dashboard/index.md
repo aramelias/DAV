@@ -31,7 +31,7 @@ Can we see any correlations between the BMI and food prices of countries?
 
 <hr />
 
-## Question 4: Within a Country
+## Question 4: Inner Regions
 Is there a correlation between food prices in the same province/state in a country?
 
 <a href="/DAV/q4">Read More</a><br />

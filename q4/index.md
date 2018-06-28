@@ -1,4 +1,4 @@
-# Question 4: Within a Country
+# Question 4: Inner Regions
 *Are there any correlations between the food prices in different regions within the same country?*
 
 <hr>
