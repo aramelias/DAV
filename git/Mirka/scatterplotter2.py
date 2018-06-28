@@ -1,6 +1,6 @@
 from bokeh.io import output_file, show, export_png
-from bokeh.layouts import row, widgetbox
-from bokeh.plotting import figure, show, output_file
+from bokeh.layouts import row, widgetbox, column
+from bokeh.plotting import figure, show, output_file, save
 from bokeh.models import ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
 from bokeh.models import CustomJS, Slider, ColumnDataSource, Range1d, LabelSet, Label, DataRange1d, HoverTool, WheelZoomTool, PanTool, BoxZoomTool, ResetTool, TapTool, SaveTool
 import pandas as pd
@@ -168,7 +168,6 @@ def convert_to_source(data_food, data_BMI):
 
         while v < len(rice_data_list):
             if str(rice_data_list[v]) == "nan":
-                print(v)
                 rice_data_list.pop(v)
                 BMI_data_list.pop(v)
                 new_country_list.pop(v)
@@ -224,7 +223,11 @@ def scroll_plotter(first_source, sources):
 
     output_file("Rice_vs_BMI_slider.html")
 
-    show(layout)
+    layout = column(
+        widgetbox(slider),
+        f
+    )
+    save(layout)
 
 if __name__ == "__main__":
     database_x, database_y = reading_databases()
