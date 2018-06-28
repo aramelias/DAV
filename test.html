@@ -6,17 +6,24 @@
 
   <body>
     <!-- Header -->
-    <iframe src="/Users/Tim/UvA/DAV/git/Tim/Ignored/scatter_plots/Rice.html"
-      sandbox="allow-same-origin allow-scripts"
-      width="50%"
-      height="500px"
-      scrolling="no"
-      seamless="seamless"
-      frameborder="0"
-      style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);">
-    </iframe>
-
+    <div style="background-color: purple; width: 500px; position: absolute; left: 50%; transform: translateX(-50%);">
+      <iframe id=EkkeEkkePangPang src="git/Tim/Ignored/graphs/scatter_plots/Rice.html"
+        sandbox="allow-same-origin allow-scripts"
+        width="1000px"
+        height="500px"
+        scrolling="no"
+        seamless="seamless"
+        frameborder="0"
+        style="margin-left: 50%; transform: translateX(-50%);">
+      </iframe>
+    </div>
 
   </body>
+
+  <script>
+    var elem = document.getElementById("EkkeEkkePangPang")
+    var rect = elem.getBoundingClientRect();
+    console.log(rect.left, rect.right - (rect.right - rect.left));
+  </script>
 
 </html>

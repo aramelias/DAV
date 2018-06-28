@@ -221,13 +221,13 @@ def collect_graphs (db, mode, use_years):
         if mode == "products":
             first_order = row.product_name
             secnd_order = row.country_name
-            if tier2 == "Syrian Arab Republic" or tier2 == "Myanmar":
+            if secnd_order == "Syrian Arab Republic" or secnd_order == "Myanmar":
                 progress_bar.update()
                 continue
         elif mode == "countries":
             first_order = row.country_name
             secnd_order = row.product_name
-            if tier2 == "Syrian Arab Republic" or tier2 == "Myanmar":
+            if secnd_order == "Syrian Arab Republic" or secnd_order == "Myanmar":
                 progress_bar.update()
                 continue
         elif "regions" in mode:
@@ -442,8 +442,10 @@ def main (input_path, output_path, use_years, overview_graphs, overview_only, so
                     title = "Average price of rice between countries in {}".format(tier1)
                 elif pattern == "inner_regions":
                     title = "Average price of rice between the regions in {}".format(tier1)
-                else:
-                    title = "Price of {}".format(tier1)
+                elif pattern == "countries":
+                    title = "Price of various products in {}".format(tier1)
+                elif pattern == "products":
+                    title = "Price of {} in various countries".format(tier1)
                 do_graph (tier1, graphs, dir_path + file_name, title)
                 progress_bar.update()
                 total_graphs += 1
