@@ -35,7 +35,7 @@ As visible in the graph for Western Africa, Nigeria showed a far higher rice pri
 
 <iframe src="/DAV/git/Tim/Graphs/Eilanden.html"
     sandbox="allow-same-origin allow-scripts"
-    height="620"
+    height="630"
     width="100%"
     max-width="100%"
     scrolling="yes"
