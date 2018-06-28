@@ -48,3 +48,6 @@ Is there a correlation between geographic location and the BMI to food prices ra
 
 ## Other Findings
 While analyzing the data, our group also made a few interesting discoveries.
+* 
+* 
+* 
