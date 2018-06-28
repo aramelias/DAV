@@ -430,7 +430,7 @@ if __name__ == "__main__":
 
     input_path = "/Users/Tim/UvA/DAV/git/Ignored/foodprices2 unified better.csv"
     input_path_bmi = "/Users/Tim/UvA/DAV/git/BMI-Data-Less.csv"
-    output_path = "/Users/Tim/UvA/DAV/git/Tim/Ignored/scatter_plots"
+    output_path = "/Users/Tim/UvA/DAV/git/Tim/Ignored/graphs/scatter_plots"
     if args.input_path:
         input_path = args.input_path
     if args.input_path_bmi:
