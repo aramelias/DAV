@@ -25,6 +25,7 @@ There are a few exceptions to this rule, in which case the food price and curren
     height="660"
     width="130%"
     max-width="100%"
+    style="margin-left:50%; transform:translateX(-50%);"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
@@ -34,6 +35,7 @@ There are a few exceptions to this rule, in which case the food price and curren
     height="660"
     width="130%"
     max-width="100%"
+    style="margin-left:50%; transform:translateX(-50%);"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
@@ -43,6 +45,7 @@ There are a few exceptions to this rule, in which case the food price and curren
     height="660"
     width="130%"
     max-width="100%"
+    style="margin-left:50%; transform:translateX(-50%);"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
