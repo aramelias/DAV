@@ -7,7 +7,7 @@ Generally speaking, most countries that occupy the same region show similar fluc
 
 <iframe src="/DAV/git/Tim/Graphs/region_overview.html"
     sandbox="allow-same-origin allow-scripts"
-    height="465"
+    height="525"
     width="100%"
     max-width="100%"
     scrolling="yes"
