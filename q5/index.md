@@ -7,7 +7,7 @@ It can be concluded from the data that when the value of the local currency chan
 
 However, the opposite is not true: for example, while the price of rice in Bangladesh strongly fluctuates, the value of its currency, the Taka (BDT), is not affected by this, while changes in the value of the Taka imply similar changes in the rice price.
 
-<iframe src="/DAV/git/Mirka/rice vs valuta/currency2_BDT_development2.html"
+<iframe src="/DAV/git/Mirka/rice vs valuta/currency2:_BDT_development2.html"
     sandbox="allow-same-origin allow-scripts"
     height="630"
     width="110%"
