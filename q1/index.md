@@ -89,11 +89,36 @@ South Sudan shows a similar correlation: from 2012 to 2015, all food prices rema
 
 In Tanzania, maize and rice have a correlation of 0,9812.
 
-<!-- Red beans graph -->
+<iframe src="/DAV/git/Tim/Graphs/Beans (red).html"
+    sandbox="allow-same-origin allow-scripts"
+    height="630"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 The price of red beans has a similarity of 0.9992 across all countries, meaning the price develops at an extremely similar rate all over the world.
 
-<!-- Graphs: wheat AND bread -->
+<iframe src="/DAV/git/Tim/Graphs/Wheat.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="630"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
+<iframe src="/DAV/git/Tim/Graphs/Bread.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="630"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 Counterintuitive as it may seem, the price of bread does not show a particularly strong correlation with that of wheat in any country. The price of wheat increases over the years, while that of bread stays relatively the same, only increasing and decreasing at different moments compared to the price of its main ingredient.
 
