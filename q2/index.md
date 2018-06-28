@@ -17,7 +17,17 @@ Generally speaking, most countries that occupy the same region show similar fluc
 
 One example of this is the peak in 2009-2010, which can be seen in all regions. This peak is also visible in the overview of the average price of rice per region, with the Middle East being the most affected.
 
-Of course, there are also developments that can be seen in multiple countries within the same region, but not anywhere or everywhere else. For example, Western Africa as a whole shows a peak in the price of rice in 2003 that can hardly be detected in other areas.
+Of course, there are also developments that can be seen in multiple countries within the same region, but not anywhere or everywhere else. For example, Western Africa as a whole (seen below) shows a peak in the price of rice in 2003 that can hardly be detected in other areas.
+
+<iframe src="/DAV/git/Tim/Graphs/West Afrika.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="620"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 A few exceptions of this are as follows:
 
