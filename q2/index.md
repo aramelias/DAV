@@ -5,7 +5,15 @@
 
 Generally speaking, most countries that occupy the same region show similar fluctuations in food price. Moreover, most trends in the price of rice -- an almost universally available crop -- tend to show up in more than one region across the world.
 
-<!-- Overview -->
+<iframe src="/DAV/git/Tim/Graphs/region_overview.html"
+    sandbox="allow-same-origin allow-scripts"
+    height="465"
+    width="100%"
+    max-width="100%"
+    scrolling="yes"
+    seamless="seamless"
+    frameborder="0">
+</iframe>
 
 One example of this is the peak in 2009-2010, which can be seen in all regions. This peak is also visible in the overview of the average price of rice per region, with the Middle East being the most affected.
 
