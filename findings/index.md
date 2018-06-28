@@ -1,7 +1,7 @@
 # Overige bevindingen
 
 <hr>
-<a href="/DAV/dashboard">Home</a>
+<a href="/DAV/q6">Vorige</a> | <a href="/DAV/dashboard">Home</a>
 <hr>
 
 Bij het analyseren van de data deed onze groep een aantal interessante ontdekkingen.
@@ -37,4 +37,4 @@ Vanwege de burgeroorlog en de bijbehorende stijging in de rijstprijs sinds 2011,
 De plotselinge stijging in voedselprijzen in Tanzania in 2012-2013 kan worden toegeschreven aan de extreme droogte. Meteen daarna, echter, zijn de prijzen weer gedaald.
 
 <hr>
-<a href="/DAV/dashboard">Home</a>
+<a href="/DAV/q6">Vorige</a> | <a href="/DAV/dashboard">Home</a>
