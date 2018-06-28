@@ -1,6 +1,9 @@
 # Introduction
-Welcome to the project page of Group 27 of Data Analysis and Visualization, or DAV for short. Here, our research and conclusions drawn from the Food Prices dataset as well as a few supplementary datasets are neatly displayed in the form of six question-and-answer pages.<br /><br />
+Welcome to the project page of Group 27 of Data Analysis and Visualization, or DAV for short. Here, our research and conclusions drawn from the Food Prices dataset as well as a few supplementary datasets are neatly displayed in the form of six question-and-answer pages.
+
 Our group consists of Anne Boomsma, Aram Elias, Tim Müller and Mirka Schoute.
+
+In this project, we analyzed the dataset of the prices of various food products over the past two decades in more than 70 countries all over the world. In addition, we added a similar dataset of the average BMI in each country to the mix to see if there were any connections.
 
 <hr />
 
