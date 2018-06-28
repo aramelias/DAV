@@ -23,7 +23,7 @@ A few exceptions of this include:
 
 <!-- Syria graph -->
 
-Syrian Arab Republic shows extremely high food prices, even increasing to around $100 per kilogram in 2015 compared to the $1.54 price in Albert Heijn.
+Syrian Arab Republic shows extremely high food prices, even increasing to around $100 per kilogram in 2015 compared to the $1.54 price in Albert Heijn. For this reason, the country has been considered an outlier and has not been included in the overview at the beginning of this page.
 
 <!-- Haiti graph -->
 
