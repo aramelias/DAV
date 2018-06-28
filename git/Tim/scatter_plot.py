@@ -31,6 +31,10 @@
 #   o Attempts made to export graphs as             #
 #     HTML-importable graphs, for the website       #
 #####################################################
+# v2.2:                                             #
+#   - Fixed a bug that would show incorrect initial #
+#     data                                          #
+#####################################################
 
 import argparse
 import pandas as pd
@@ -206,11 +210,13 @@ def do_graph_animation (graph_product, title, path, progress_bar):
     lowest_year = float("inf")
     highest_year = -float("inf")
 
-    lowest_price = float("inf")
-    highest_price = -float("inf")
-
-    lowest_BMI = float("inf")
-    highest_BMI = -float("inf")
+    # Real quick, determine the boundries
+    for region in graph_product:
+        for timestamp in graph_product[region]:
+            if timestamp > highest_year:
+                highest_year = timestamp
+            if timestamp < lowest_year:
+                lowest_year = timestamp
 
     # Construct the new plot
     for region in graph_product:
@@ -221,25 +227,13 @@ def do_graph_animation (graph_product, title, path, progress_bar):
             x_list, y_list = graph_product[region][timestamp]
             # Create the dataset
             data = {"x":[], "y":[], "names":[], "region":[]}
+
+            if timestamp < lowest_region_year:
+                lowest_region_year = timestamp
+
             for country in x_list:
                 country_price = x_list[country]
                 country_BMI = y_list[country]
-
-                # Take care we get some limits
-                if timestamp < lowest_year:
-                    lowest_year = timestamp
-                if timestamp < lowest_region_year:
-                    lowest_region_year = timestamp
-                if timestamp > highest_year:
-                    highest_year = timestamp
-                if country_price < lowest_price:
-                    lowest_price = country_price
-                if country_price > highest_price:
-                    highest_price = country_price
-                if country_BMI < lowest_BMI:
-                    lowest_BMI = country_BMI
-                if country_BMI > highest_BMI:
-                    highest_BMI = country_BMI
 
                 # Save the data
                 data["x"].append(country_price)
@@ -252,7 +246,11 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
 
         # Now create a nice source of the data
-        data_source = bokeh.models.ColumnDataSource(data=country_data[region][lowest_region_year])
+        if lowest_region_year == lowest_year:
+            data = country_data[region][lowest_year]
+        else:
+            data = {"x":[0] * len(country_data[region][lowest_region_year]["x"]), "y":[0] * len(country_data[region][lowest_region_year]["x"]), "names":country_data[region][lowest_region_year]["names"], "region":country_data[region][lowest_region_year]["region"]}
+        data_source = bokeh.models.ColumnDataSource(data=data)
         sources.append([data_source, region])
 
         # Now plot it
@@ -269,8 +267,8 @@ def do_graph_animation (graph_product, title, path, progress_bar):
 
     legend = bokeh.models.Legend(items=legend_list, location=(0,0), click_policy="mute")
 
-    f.x_range = bkm.DataRange1d(start=lowest_price, end=highest_price)
-    f.y_range = bkm.DataRange1d(start=lowest_BMI, end=highest_BMI)
+    f.x_range = bkm.DataRange1d(start=-0.5, end=3)
+    f.y_range = bkm.DataRange1d(start=18, end=30)
 
     # Make the slider
     callback = bokeh.models.CustomJS(args=dict(sources=sources, all_data=country_data), code=callback_code)
@@ -383,7 +381,7 @@ def main (input_path, input_path_bmi, output_path):
     # Do welcome
     print("\n##################")
     print("## SCATTER PLOT ##")
-    print("##     v2.1     ##")
+    print("##     v2.2     ##")
     print("##################\n")
 
     print("USING PATHS:")
