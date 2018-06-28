@@ -2,7 +2,7 @@
 *Kunnen we correlaties vinden tussen de gemiddelde BMI van een land en de gemiddelde prijs van rijst in dat land?*
 
 <hr>
-<a href="/DAV/q4">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<a href="/DAV/q2">Vorige</a> | <a href="/DAV/dashboard">Home</a> | <a href="/DAV/q4">Volgende</a>
 <hr>
 
 <iframe src="/DAV/git/lineair_regression.html"
@@ -20,4 +20,4 @@ Zoals te zien is aan het resultaat van *linear regression* op de ontwikkelingen 
 Het is mogelijk dat dit komt door de toenemende welvaart in de hele wereld, die zorgt voor een hogere voedselkwaliteit en voedselconsumptie. Daardoor stijgen zowel de voedselprijs als de gemiddelde BMI.
 
 <hr>
-<a href="/DAV/q4">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<a href="/DAV/q2">Vorige</a> | <a href="/DAV/dashboard">Home</a> | <a href="/DAV/q4">Volgende</a>

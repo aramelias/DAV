@@ -2,7 +2,7 @@
 *Is er een relatie te zien tussen enerzijds geografische ligging van een land en anderzijds de verhouding tussen BMI en voedselprijs, door de tijd heen?*
 
 <hr>
-<a href="/DAV/dashboard">Home</a>
+<a href="/DAV/q5">Vorige</a> | <a href="/DAV/dashboard">Home</a> | <a href="/DAV/findings">Volgende</a>
 <hr>
 
 Het antwoord hierop is ja; zowel de gemiddelde BMI en de voedselprijs zijn in de afgelopen jaren op vergelijkbare wijze gestegen. Daarbij komt ook nog dat een grotere verandering van een van deze statistieken binnen de regio bijna altijd een soortgelijke verandering betekent van de andere statistiek.
@@ -22,4 +22,4 @@ Een laatste detail dat nog op te merken valt is dat er een enkele *outlier* is d
 </iframe>
 
 <hr>
-<a href="/DAV/dashboard">Home</a>
+<a href="/DAV/q5">Vorige</a> | <a href="/DAV/dashboard">Home</a> | <a href="/DAV/findings">Volgende</a>

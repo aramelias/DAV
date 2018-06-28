@@ -2,7 +2,7 @@
 *Zijn er voedselprijzen die een negatieve of een positieve correlatie laten zien? Is deze correlatie consistent, of komt deze alleen in bepaalde periodes voor? Kun je misschien ingrediënten voor een ander voedselproduct identificeren?*
 
 <hr>
-<a href="/DAV/q2">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<a href="/DAV/dashboard">Home</a> | <a href="/DAV/q2">Volgende</a>
 <hr>
 
 Negen landen vertonen een correlatie tussen de prijzen van verschillende soorten voedsel. Ook zijn de volgende ontwikkelingen aan het licht gekomen:
@@ -129,4 +129,4 @@ De prijs van rode bonen heeft een correlatie van 0,9992 in alle landen samen, wa
 Hoewel het onlogisch klinkt, lijkt de prijs van brood geen sterke correlatie te vertonen met die van graan in welk land dan ook. Hoewel de graanprijs door de jaren heen blijft stijgen, blijft de prijs van brood sterk variëren en stijgt en daalt hij niet op dezelfde momenten als die van het hoofdingrediënt.
 
 <hr>
-<a href="/DAV/q2">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<a href="/DAV/dashboard">Home</a> | <a href="/DAV/q2">Volgende</a>
