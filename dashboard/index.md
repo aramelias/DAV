@@ -56,4 +56,4 @@ Is er een verband tussen geografische locatie en de verhouding tussen de gemidde
 
 Bij het analyseren van de gegevens hebben we bij Bangladesh, Syrie en Tanzania interessante resultaten gevonden.
 
-<a href="/DAV/findings">Bekijk de bevindingen</a>.
+<a href="/DAV/findings">Bekijk de bevindingen</a>
