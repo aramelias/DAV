@@ -1,51 +1,13 @@
-# Vraag 2: Gebieden
-*Laten landen in dezelfde regio ook soortgelijke prijsstijgingen en -dalingen zien? Zo nee, is daar een mogelijke verklaring voor te vinden?*
+# Overige bevindingen
 
 <hr>
-<a href="/DAV/q3">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<a href="/DAV/dashboard">Home</a>
 <hr>
 
-Over het algemeen blijken landen die zich in dezelfde regio bevinden, vergelijkbare ontwikkelingen in de voedselprijzen te vertonen. Bovendien komen de meeste trends in de prijs van rijst -- een bijna overal beschikbaar gewas -- in meerdere regio's voor.
-
-<iframe src="/DAV/git/Tim/Graphs/region_overview.html"
-    sandbox="allow-same-origin allow-scripts"
-    height="620"
-    width="110%"
-    max-width="100%"
-    scrolling="yes"
-    seamless="seamless"
-    frameborder="0">
-</iframe>
-
-Een voorbeeld is de piek in 2009-2010, die in alle regio's duidelijk te zien is.
-
-Natuurlijk zijn er ook ontwikkelingen die alleen in landen in dezelfde regio te zien zijn, zoals de piek in West-Afrika in 2003 die niet of nauwelijks in de andere gebieden terugkomt.
-
-<iframe src="/DAV/git/Tim/Graphs/West Afrika.html"
-    sandbox="allow-same-origin allow-scripts"
-    height="630"
-    width="110%"
-    max-width="100%"
-    scrolling="yes"
-    seamless="seamless"
-    frameborder="0">
-</iframe>
-
-Een paar uitzonderingen op deze regel zijn als volgt:
-
-Zoals kan worden onderscheiden in de grafiek voor West-Afrika was de rijstprijs in Nigeria veel hoger dan in de rest van het gebied, tenminste tot in 2015: $3 vergeleken met het gemiddelde van $1.
-
-<iframe src="/DAV/git/Tim/Graphs/Eilanden.html"
-    sandbox="allow-same-origin allow-scripts"
-    height="630"
-    width="110%"
-    max-width="100%"
-    scrolling="yes"
-    seamless="seamless"
-    frameborder="0">
-</iframe>
-
-Tenslotte is de rijstprijs in Haïti veel hoger dan die op alle andere eilanden zowel binnen en buiten het Caribische gebied.
+Bij het analyseren van de data deed onze groep een aantal interessante ontdekkingen.
+* In vooral de rijstprijs maar ook in de prijzen van andere producten in Bangladesh zijn erg sterke pieken en dalen te vinden, zo eens in de twee jaar. Eerst hadden we weinig verklaring voor ze, maar uiteindelijk bleek dat ze precies tegelijk vielen met zware edities van El Niño en La Niña. Beide zijn periodieke weersverschijnselen, die de natuurlijke balans enorm kunnen verstoren. In 2007/2008 en 2010/2011 waren er extreem zware La Niña’s, en in 2015/2016 extreem zware El Niño’s. Het zou dus erg goed kunnen dat deze pieken en dalen in Bangladesh door deze weersverschijnselen werden veroorzaakt, zeker omdat Bangladesh precies in het beïnvloede gebied ligt. Deze droogtes zorgen voor een slechte rijstoogst, wat dus voor een stijging in de prijs zorgt.
+* Sinds 2011 zijn de voedselprijzen in Syrië zeer sterk gestegen, waarschijnlijk vanwege de burgeroorlog die sinds dat jaar het land in rep en roer heeft gebracht. Omdat de waarden van dit land zo sterk afwijken van het gemiddelde, is besloten Syrië als een *outlier* te beschouwen en het uit onze beschouwing van de andere landen te laten.
+* Tenslotte kan de plotselinge stijging in voedselprijzen in Tanzania in 2012-2013 worden toegeschreven aan de extreme droogte die het gebied teisterde. Meteen na het einde van deze droogte zijn de prijzen immers teruggedaald naar een normaal niveau.
 
 <hr>
-<a href="/DAV/q3">Volgende</a> | <a href="/DAV/dashboard">Home</a>
+<a href="/DAV/dashboard">Home</a>
