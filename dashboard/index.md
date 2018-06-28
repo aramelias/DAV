@@ -54,6 +54,6 @@ Is there a correlation between geographic location and the BMI to food prices ra
 
 ## Other Findings
 While analyzing the data, our group also made a few interesting discoveries.
-* 
-* 
-* 
+* Due to a heavy monsoon in the Khulna region in Bangladesh in 2008, the price of most food products (including rice) was temporarily much higher than it was in the other parts of the country.
+* There has been an incredible rise in food prices in Syria since 2011, most likely due to its civil war and violent conflicts cutting off access to food in many areas, an issue that has since been worked on. Due to these extreme numbers compared to those of the surrounding countries, Syria’s statistics are considered an outlier and have been removed to provide a more accurate picture of the rest of the world. A similar development took place in South Sudan in 2016 after a coup, but this didn’t affect the statistics as much and was therefore not removed.
+* Last but not least, the large increase in food prices in Tanzania in 2012-2013 can be attributed to the heavy drought affecting the area in that period, at the end of which the food prices immediately began to drop back to normal.
