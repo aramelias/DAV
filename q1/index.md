@@ -91,7 +91,7 @@ De voedselprijzen in Zuid-Sudan vertonen eveneens een sterke correlatie. Van 201
 
 In Tanzania hebben maïs en rijst een correlatie van 0,9812.
 
-<iframe src="/DAV/git/Tim/Graphs/Beans (red).html"
+<iframe src="/DAV/git/Tim/Graphs/El Salvador.html"
     sandbox="allow-same-origin allow-scripts"
     height="630"
     width="110%"
@@ -101,7 +101,7 @@ In Tanzania hebben maïs en rijst een correlatie van 0,9812.
     frameborder="0">
 </iframe>
 
-De prijs van rode bonen heeft een correlatie van 0,9992 in alle landen samen, wat betekent dat de prijs overal ongeveer dezelfde ontwikkelingen vertoont.
+De prijs van rode bonen (red en silk red) in El Salvador heeft een correlatie van 0,9992, wat betekent dat de prijs overal ongeveer dezelfde ontwikkelingen vertoont en dus een sterke samenhang heeft.
 
 <iframe src="/DAV/git/Tim/Graphs/Wheat.html"
     sandbox="allow-same-origin allow-scripts"
